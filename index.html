@@ -33,7 +33,7 @@
     <div v-else id="app">
         <v-app>
             <v-main>
-                <v-app-bar flat height=110 class="d-flex justify-center">
+                <v-app-bar flat height=110 class="d-flex justify-center" color="#111">
                     <div class="d-flex flex-row justify-center align-center">
                         <v-avatar class="mr-1 my-1" size=80>
                             <img src="img/avatar.png" alt="[Avatar]">
@@ -64,7 +64,7 @@
                     <div v-if="tabIndex == 0" class="v-flex justify-center">
                         <div v-for="(dev, index) in devProjects" :key="dev.title"
                             class="d-flex flex-column align-center justify-center mb-5 xs-12"
-                            :style="{'background-color': `${index % 2 == 0 ? '#121212' : '#181818'}` }">
+                            :style="{'background-color': `${index % 2 == 0 ? '#181818' : '#121212'}` }">
                             <h2 class="mt-5">{{dev.title}}</h2>
                             <p v-if="dev.engine">
                             <div class="d-flex flex-row justify-center align-center">
