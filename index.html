@@ -109,7 +109,7 @@
 
                 <v-footer padless fixed bottom=0 dense dark>
                     <v-row justify="center" no-gutters>
-                        <v-btn v-for="media in social" :key="media.icon" color="white" text fab>
+                        <v-btn v-for="media in social" :key="media.icon" color="white" text icon class="ma-2">
                             <a :href="media.link" target="_blank" class="no-decoration">
                                 <v-avatar size=35>
                                     <svg>
@@ -172,12 +172,54 @@
                             title: 'Player Finite Multi-State Machine (2D Platformer) + Skin Selector ',
                             engine: {
                                 name: 'Godot Engine',
-                                icon: 'img/godot.png'
+                                icon: 'img/godot.png',
+                                website: 'https://godotengine.org/'
                             },
                             repo: 'https://github.com/FlavioFS/godot-platformer-state-machine',
                             imgs: [
                                 'https://i.postimg.cc/pL97fXQn/preview.gif',
                                 'https://i.postimg.cc/kGsrp1D6/extra.gif'
+                            ]
+                        },
+                        {
+                            title: 'Multi-state enemy behavior (Smashing Stone)',
+                            engine: {
+                                name: 'Godot Engine',
+                                icon: 'img/godot.png',
+                                website: 'https://godotengine.org/'
+                            },
+                            repo: 'https://github.com/FlavioFS/godot-mad-stone',
+                            imgs: [
+                                'https://i.postimg.cc/9Mc7h0J4/preview.gif'
+                            ]
+                        },
+                        {
+                            title: 'Client data analytics (2 separated repos: client & server)',
+                            engine: {
+                                name: 'Cocos Creator',
+                                icon: 'img/cocos.png',
+                                website: 'https://www.cocos.com/en/creator'
+                            },
+                            repo: 'https://github.com/FlavioFS/slot-test-client',
+                            imgs: [
+                                'https://i.postimg.cc/63NhrYJX/slotclientdemo.gif',
+                                'https://i.postimg.cc/cHZzcfPV/slotserverdemo.gif'
+                            ]
+                        },
+                        {
+                            title: '5 Minute Dungeon mod (Tabletop Simulator)',
+                            engine: {
+                                name: 'Lua',
+                                icon: 'img/lua.png',
+                                website: 'https://www.lua.org/'
+                            },
+                            repo: 'https://github.com/FlavioFS/5-minute-dungeon-tts-mod',
+                            imgs: [
+                                'https://i.postimg.cc/GpyBYYST/sample3-next.gif',
+                                'https://i.postimg.cc/BbMtsCtk/sample1-boss.gif',
+                                'https://i.postimg.cc/DZQ8phh2/sample2-setup.gif',
+                                'https://i.postimg.cc/GpyBYYST/sample3-next.gif',
+                                'https://i.postimg.cc/4dRY1drL/sample4-draw.gif'
                             ]
                         }
                     ],
