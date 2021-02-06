@@ -7,16 +7,16 @@
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-    <link rel="stylesheet" href="style.css">
     <title>Flávio Freitas</title>
+    <link rel="shortcut icon" href="img/avatar.png" type="image/x-icon">
 </head>
 
 <body>
     <div id="app">
         <v-app>
             <v-main>
-                <v-app-bar flat height=150>
-                    <div class="d-flex flex-row mx-6  my-1">
+                <v-app-bar flat height=125>
+                    <v-container class="d-flex flex-row mx-6  my-1">
                         <v-avatar class="mx-5 my-1" size=80>
                             <img src="img/avatar.png" alt="[Avatar]">
                         </v-avatar>
@@ -25,13 +25,30 @@
                                 <h1 class="mt-4">Flávio Freitas</h1>
                             </v-row>
                             <v-row>
-                                <p class="subheading">Developer and Tech Artist</p>
+                                <p class="subheading"> Tech Artist | Software Developer</p>
                             </v-row>
                         </v-layout>
-                    </div>
+                    </v-container>
                 </v-app-bar>
+                <v-tabs>
+                    <v-tab>The Developer</v-tab>
+                    <v-tab>The Artist</v-tab>
+                    <v-tab>About</v-tab>
+                </v-tabs>
                 <v-container>
+
                 </v-container>
+                <v-footer padless fixed bottom=0 dense dark>
+                    <v-row justify="center" no-gutters>
+                        <v-btn v-for="media in social" :key="media" color="white" text fab>
+                            <a :href="media.link" target="_blank">
+                                <v-avatar size=30>
+                                    <img :src="media.icon">
+                                </v-avatar>
+                            </a>
+                        </v-btn>
+                    </v-row>
+                </v-footer>
             </v-main>
         </v-app>
     </div>
@@ -45,7 +62,29 @@
                 theme: {
                     dark: true
                 }
-            })
+            }),
+            data() {
+                return {
+                    social: [
+                        {
+                            icon: 'img/github.png',
+                            link: 'https://www.github.com/FlavioFS/'
+                        },
+                        {
+                            icon: 'img/instagram.png',
+                            link: 'https://www.instagram.com/flafdraws/'
+                        },
+                        {
+                            icon: 'img/artstation.png',
+                            link: 'https://www.artstation.com/flaf'
+                        },
+                        {
+                            icon: 'img/deviantart.png',
+                            link: 'https://www.deviantart.com/flafdraws'
+                        },
+                    ]
+                }
+            }
         })
     </script>
 </body>
