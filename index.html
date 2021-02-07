@@ -97,39 +97,40 @@
                         </div>
                         <v-divider horizontal class="primary my-4"></v-divider>
                         <v-divider horizontal class="primary my-4"></v-divider>
-                    </div>
 
-                    <!-- THE ARTIST -->
-                    <div v-if="tabIndex == 1" class="d-flex flex-column justify-center align-center">
-                        <div class="mt-4"></div>
-                        <v-alert type='info' class="xs-1">
-                            <div class="d-flex flex-wrap align-left justify-center">
-                                <span class="mr-1">This portfolio is under construction.</span>
-                                <span>New pieces will be uploaded soon. </span>
-                            </div>
-                        </v-alert>
+                        <!-- THE ARTIST -->
+                        <div v-if="tabIndex == 1" class="d-flex flex-column justify-center align-center">
+                            <div class="mt-4"></div>
+                            <v-alert type='info' class="xs-1">
+                                <div class="d-flex flex-wrap align-left justify-center">
+                                    <span class="mr-1">This portfolio is under construction.</span>
+                                    <span>New pieces will be uploaded soon. </span>
+                                </div>
+                            </v-alert>
 
-                        <div class="d-flex flex-wrap align-top justify-center">
-                            <div v-for="(proj, projectIndex) in artProjects">
-                                <v-hover v-slot="{ hover }">
-                                    <v-badge :value="proj.imgs.length > 1" overlap :content="proj.imgs.length"
-                                        offset-x="25" offset-y="25" class="display-1" color="primary">
-                                        <v-card tile flat :class="{ 'on-hover': hover }"
-                                            v-on:click="onArtProjectClick(projectIndex)">
-                                            <div v-show="hover" :style="{'background-color': 'rgba(#000, 0.5f)'}"></div>
-                                            <img :src="proj.imgs[0]" :alt="`Image ${projectIndex}`" width="300">
-                                        </v-card>
-                                    </v-badge>
-                                </v-hover>
+                            <div class="d-flex flex-wrap align-top justify-center">
+                                <div v-for="(proj, projectIndex) in artProjects">
+                                    <v-hover v-slot="{ hover }">
+                                        <v-badge :value="proj.imgs.length > 1" overlap :content="proj.imgs.length"
+                                            offset-x="25" offset-y="25" class="display-1" color="primary">
+                                            <v-card tile flat :class="{ 'on-hover': hover }"
+                                                v-on:click="onArtProjectClick(projectIndex)">
+                                                <div v-show="hover" :style="{'background-color': 'rgba(#000, 0.5f)'}">
+                                                </div>
+                                                <img :src="proj.imgs[0]" :alt="`Image ${projectIndex}`" width="300">
+                                            </v-card>
+                                        </v-badge>
+                                    </v-hover>
+                                </div>
                             </div>
+
+                            <v-dialog fullscreen v-model="isArtDialogActive">
+                                <div class="d-flex justify-center align-center artDetailedContainer"
+                                    @click="isArtDialogActive = false">
+                                    <img :src="currentArtPiece" class="artDetailed">
+                                </div>
+                            </v-dialog>
                         </div>
-
-                        <v-dialog fullscreen v-model="isArtDialogActive">
-                            <div class="d-flex justify-center align-center artDetailedContainer"
-                                @click="isArtDialogActive = false">
-                                <img :src="currentArtPiece" class="artDetailed">
-                            </div>
-                        </v-dialog>
                     </div>
                 </div>
 
