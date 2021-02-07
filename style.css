@@ -1,3 +1,7 @@
+[v-cloak] {
+    display: none;
+}
+
 .v-card {
     transition: opacity .4s ease-in-out;
 }
