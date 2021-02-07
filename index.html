@@ -132,23 +132,23 @@
                         </v-dialog>
                     </div>
                 </div>
-    </div>
 
-    <v-footer padless fixed bottom=0 dense dark>
-        <v-row justify="center" no-gutters>
-            <v-btn v-for="media in social" :key="media.icon" color="white" text icon class="ma-2">
-                <a :href="media.link" target="_blank" class="no-decoration">
-                    <v-avatar size=35>
-                        <svg>
-                            <image :xlink:href="media.icon" width="35" height="35" />
-                        </svg>
-                    </v-avatar>
-                </a>
-            </v-btn>
-        </v-row>
-    </v-footer>
-    </v-main>
-    </v-app>
+
+                <v-footer padless fixed bottom=0 dense dark>
+                    <v-row justify="center" no-gutters>
+                        <v-btn v-for="media in social" :key="media.icon" color="white" text icon class="ma-2">
+                            <a :href="media.link" target="_blank" class="no-decoration">
+                                <v-avatar size=35>
+                                    <svg>
+                                        <image :xlink:href="media.icon" width="35" height="35" />
+                                    </svg>
+                                </v-avatar>
+                            </a>
+                        </v-btn>
+                    </v-row>
+                </v-footer>
+            </v-main>
+        </v-app>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
