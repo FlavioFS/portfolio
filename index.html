@@ -63,7 +63,7 @@
                             <div class="d-flex flex-row justify-center align-center">
                                 <a :href="dev.engine.website" target="_blank" :style="{'text-decoration': 'none'}">
                                     <v-btn rounded>
-                                        <v-avatar size=27>
+                                        <v-avatar size=27 tile>
                                             <svg>
                                                 <image :xlink:href="dev.engine.icon" width="27" height="27" />
                                             </svg>
@@ -72,12 +72,12 @@
                                     </v-btn>
                                 </a>
 
-                                <div v-if="dev.repo !== undefined">
+                                <div v-if="dev.repo !== undefined || dev.store !== undefined">
                                     <span class="mx-3">|</span>
                                     <a v-if="dev.repo !== undefined" :href="dev.repo" target="_blank"
                                         :style="{'text-decoration': 'none'}">
                                         <v-btn rounded>
-                                            <v-avatar size=30>
+                                            <v-avatar size=30 tile>
                                                 <svg>
                                                     <image xlink:href="img/github.svg" width="30" height="30" />
                                                 </svg>
@@ -85,12 +85,23 @@
                                             <span class="ml-1">Source</span>
                                         </v-btn>
                                     </a>
+                                    <a v-if="dev.store !== undefined" :href="dev.store.link" target="_blank"
+                                        :style="{'text-decoration': 'none'}">
+                                        <v-btn rounded>
+                                            <v-avatar size=30 tile>
+                                                <svg>
+                                                    <image :xlink:href="dev.store.icon" width="30" height="30" />
+                                                </svg>
+                                            </v-avatar>
+                                            <span class="ml-1">App</span>
+                                        </v-btn>
+                                    </a>
                                 </div>
                             </div>
                             </p>
                             <div class="d-flex flex-wrap justify-center align-center xs-12">
                                 <div v-for="img in dev.imgs" :key="img" class="mx-2">
-                                    <img :src="img">
+                                    <img :src="img" class="devImg">
                                 </div>
                             </div>
                             <v-divider horizontal class="primary my-4"></v-divider>
@@ -98,47 +109,90 @@
                         <v-divider horizontal class="primary my-4"></v-divider>
                         <v-divider horizontal class="primary my-4"></v-divider>
 
-                        <!-- THE ARTIST -->
-                        <div v-if="tabIndex == 1" class="d-flex flex-column justify-center align-center">
-                            <div class="mt-4"></div>
-                            <v-alert type='info' class="xs-1">
-                                <div class="d-flex flex-wrap align-left justify-center">
-                                    <span class="mr-1">This portfolio is under construction.</span>
-                                    <span>New pieces will be uploaded soon. </span>
-                                </div>
-                            </v-alert>
+                    </div>
 
-                            <div class="d-flex flex-wrap align-top justify-center">
-                                <div v-for="(proj, projectIndex) in artProjects">
-                                    <v-hover v-slot="{ hover }">
-                                        <v-badge :value="proj.imgs.length > 1" overlap :content="proj.imgs.length"
-                                            offset-x="25" offset-y="25" class="display-1" color="primary">
-                                            <v-card tile flat :class="{ 'on-hover': hover }"
-                                                v-on:click="onArtProjectClick(projectIndex)">
-                                                <div v-show="hover" :style="{'background-color': 'rgba(#000, 0.5f)'}">
-                                                </div>
-                                                <img :src="proj.imgs[0]" :alt="`Image ${projectIndex}`" width="300">
-                                            </v-card>
-                                        </v-badge>
-                                    </v-hover>
+                    <!-- THE ARTIST -->
+                    <div v-if="tabIndex == 1" class="d-flex flex-column justify-center align-center">
+                        <div class="mt-4"></div>
+                        <v-alert type='info' class="xs-1">
+                            <div class="d-flex flex-wrap align-left justify-center">
+                                <span class="mr-1">This portfolio is under construction.</span>
+                                <span>New pieces will be uploaded soon. </span>
+                            </div>
+                        </v-alert>
+
+                        <div class="d-flex flex-wrap align-top justify-center">
+                            <div v-for="(proj, projectIndex) in artProjectsReverse">
+                                <v-hover v-slot="{ hover }">
+                                    <v-badge :value="proj.imgs.length > 1" overlap :content="proj.imgs.length"
+                                        offset-x="25" offset-y="25" class="display-1" color="primary">
+                                        <v-card tile flat :class="{ 'on-hover': hover }"
+                                            v-on:click="onArtProjectClick(projectIndex)">
+                                            <div v-show="hover" :style="{'background-color': 'rgba(#000, 0.5f)'}">
+                                            </div>
+                                            <img :src="proj.imgs[0]" :alt="`Image ${projectIndex}`" width="300">
+                                        </v-card>
+                                    </v-badge>
+                                </v-hover>
+                            </div>
+                        </div>
+
+                        <v-dialog fullscreen v-model="isArtDialogActive">
+                            <div class="d-flex justify-center align-center artDetailedContainer"
+                                @click="isArtDialogActive = false">
+                                <img :src="currentArtPiece" class="artDetailed">
+                            </div>
+                        </v-dialog>
+                    </div>
+
+                    <!-- ABOUT -->
+                    <div v-if="tabIndex == 2">
+                        <div class="mt-5"></div>
+                        <div class="d-flex flex-column justify-center align-center">
+
+                            <h2 class="mt-5">Channels</h2>
+                            <div class="mb-4">
+                                <div class="d-flex flex-row mt-2 justify-left">
+                                    <v-icon class="mr-3">mdi-email</v-icon>
+                                    <span>flaviofreitas.h@gmail.com</span>
                                 </div>
+                                <div class="d-flex flex-row mt-2 justify-left">
+                                    <v-icon class="mr-3">mdi-discord</v-icon>
+                                    <span>Melon Soda#5176</span>
+                                </div>
+                                <a class="d-flex flex-row mt-2 justify-left" :style="{'text-decoration': 'none'}"
+                                    href="https://www.instagram.com/flafdraws/" target="_blank">
+                                    <v-icon class="mr-3">mdi-instagram</v-icon>
+                                    <span>Instagram DM</span>
+                                </a>
                             </div>
 
-                            <v-dialog fullscreen v-model="isArtDialogActive">
-                                <div class="d-flex justify-center align-center artDetailedContainer"
-                                    @click="isArtDialogActive = false">
-                                    <img :src="currentArtPiece" class="artDetailed">
+                            <h2 class="mt-5">Available for hire</h2>
+                            <div class="d-flex flex-row mt-2 mb-4 justify-left">
+                                <v-chip class="mr-2" color=primary>Contract</v-chip>
+                                <v-chip class="mr-2" color=primary>Freelance</v-chip>
+                                <v-chip class="mr-2" color=primary>Full Time</v-chip>
+                            </div>
+
+                            <h2 class="mt-5">Software experience</h2>
+                            <div class="d-flex flex-wrap mt-2 mb-4 justify-center">
+                                <div v-for="software in about.software" :key="software.name" class="mx-5 mb-4">
+                                    <v-avatar tile>
+                                        <img :src="software.icon">
+                                    </v-avatar>
+                                    <span class="ml-1">{{software.name}}</span>
                                 </div>
-                            </v-dialog>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
 
                 <v-footer padless fixed bottom=0 dense dark>
                     <v-row justify="center" no-gutters>
                         <v-btn v-for="media in social" :key="media.icon" color="white" text icon class="ma-2">
-                            <a :href="media.link" target="_blank" class="no-decoration">
+                            <a :href="media.link" target="_blank">
                                 <v-avatar size=35>
                                     <svg>
                                         <image :xlink:href="media.icon" width="35" height="35" />
@@ -170,11 +224,16 @@
             methods: {
                 onArtProjectClick: function (projectIndex) {
                     try {
-                        this.currentArtPiece = this.artProjects[projectIndex].imgs[0];
+                        this.currentArtPiece = this.artProjectsReverse[projectIndex].imgs[0];
                         this.isArtDialogActive = true;
                     } catch (error) {
                         this.isArtDialogActive = false;
                     }
+                }
+            },
+            computed: {
+                artProjectsReverse() {
+                    return this.artProjects.slice().reverse();
                 }
             },
             data() {
@@ -194,8 +253,8 @@
                             icon: "mdi-brush"
                         },
                         {
-                            text: "Contact",
-                            icon: "mdi-email"
+                            text: "About",
+                            icon: "mdi-account-box"
                         }
                     ],
                     devProjects: [
@@ -252,6 +311,29 @@
                             ]
                         },
                         {
+                            title: 'Complete Android game from scratch',
+                            engine: {
+                                name: 'Unity',
+                                icon: 'img/unity.png',
+                                website: 'https://unity.com/'
+                            },
+                            store: {
+                                icon: 'img/google-play.png',
+                                link: 'https://play.google.com/store/apps/details?id=com.MeronSoda.DontDrop'
+                            },
+                            imgs: [
+                                'https://cdnb.artstation.com/p/assets/images/images/011/523/497/large/flavio-sousa-grafico-de-recursos2.jpg?1530020062',
+                                'https://cdnb.artstation.com/p/assets/images/images/011/523/777/large/flavio-sousa-1.jpg?1530021096',
+                                'https://cdnb.artstation.com/p/assets/images/images/011/523/519/large/flavio-sousa-2.jpg?1530020190',
+                                'https://cdna.artstation.com/p/assets/images/images/011/523/520/large/flavio-sousa-3.jpg?1530020194',
+                                'https://cdnb.artstation.com/p/assets/images/images/011/523/523/large/flavio-sousa-4.jpg?1530020198',
+                                'https://cdnb.artstation.com/p/assets/images/images/011/523/599/large/flavio-sousa-5.jpg?1530020468',
+                                'https://cdna.artstation.com/p/assets/images/images/011/523/624/large/flavio-sousa-6.jpg?1530020563',
+                                'https://cdnb.artstation.com/p/assets/images/images/011/523/635/large/flavio-sousa-7.jpg?1530020591',
+                                'https://cdnb.artstation.com/p/assets/images/images/011/523/683/large/flavio-sousa-8.jpg?1530020746'
+                            ]
+                        },
+                        {
                             title: '2D Sea shader - 1 Quad',
                             engine: {
                                 name: 'Unity',
@@ -295,11 +377,42 @@
                             ]
                         }
                     ],
+                    about: {
+                        software: [
+                            {
+                                name: "Krita",
+                                icon: "https://cdnb.artstation.com/p/softwares/icons/000/002/261/default/krita_logo1.png?1565652529"
+                            },
+                            {
+                                name: "Photoshop",
+                                icon: "https://cdna.artstation.com/p/softwares/icons/000/000/032/default/Photoshop.png?1608144074"
+                            },
+                            {
+                                name: "Unity",
+                                icon: "https://cdnb.artstation.com/p/softwares/icons/000/000/047/default/unity-logo-white.png?1479506284"
+                            },
+                            {
+                                name: "Godot",
+                                icon: "img/godot.png"
+                            },
+                            {
+                                name: "Illustrator",
+                                icon: "https://cdnb.artstation.com/p/softwares/icons/000/000/019/default/illustrator.png?1608143969"
+                            },
+                            {
+                                name: "Aseprite",
+                                icon: "https://cdna.artstation.com/p/softwares/icons/000/001/180/default/asperite.png?1504879946"
+                            },
+                            {
+                                name: "Pyxel Edit",
+                                icon: "https://cdnb.artstation.com/p/softwares/icons/000/003/069/default/PyxelEdit.png?1471459961"
+                            }
+                        ]
+                    },
                     social: [
                         {
                             icon: 'img/github.svg',
-                            link: 'https://www.github.com/FlavioFS/',
-                            color: 'white'
+                            link: 'https://www.github.com/FlavioFS/'
                         },
                         {
                             icon: 'img/artstation.svg',
@@ -311,8 +424,7 @@
                         },
                         {
                             icon: 'img/instagram.svg',
-                            link: 'https://www.instagram.com/flafdraws/',
-                            color: ''
+                            link: 'https://www.instagram.com/flafdraws/'
                         }
                     ]
                 }
