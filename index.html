@@ -26,9 +26,11 @@
             <v-main>
                 <v-app-bar flat height=110 class="d-flex justify-center" color="#111">
                     <div class="d-flex flex-row justify-center align-center">
-                        <v-avatar class="mr-1 my-1" size=80>
-                            <img src="img/avatar.png" alt="[Avatar]">
-                        </v-avatar>
+                        <div class="profile d-flex justify-center align-center mr-2">
+                            <v-avatar size=80>
+                                <img src="img/avatar.png" alt="[Avatar]">
+                            </v-avatar>
+                        </div>
                         <div justify-center class="d-flex flex-column ml-5">
                             <v-row>
                                 <h1>Flávio Freitas</h1>
@@ -125,7 +127,7 @@
                             <div v-for="(proj, projectIndex) in artProjectsReverse">
                                 <v-hover v-slot="{ hover }">
                                     <v-badge :value="proj.imgs.length > 1" overlap :content="proj.imgs.length"
-                                        offset-x="25" offset-y="25" class="display-1" color="primary">
+                                        offset-x="30" offset-y="30" color="primary">
                                         <v-card tile flat :class="{ 'on-hover': hover }"
                                             v-on:click="onArtProjectClick(projectIndex)">
                                             <div v-show="hover" :style="{'background-color': 'rgba(#000, 0.5f)'}">
@@ -137,10 +139,34 @@
                             </div>
                         </div>
 
-                        <v-dialog fullscreen v-model="isArtDialogActive">
-                            <div class="d-flex justify-center align-center artDetailedContainer"
-                                @click="isArtDialogActive = false">
-                                <img :src="currentArtPiece" class="artDetailed">
+                        <v-dialog persistent fullscreen v-model="isArtDialogActive">
+                            <div class="d-flex justify-center align-center artDetailedContainer">
+                                <div v-if="currentArtProject !== undefined && currentArtProject.imgs.length > 0"
+                                    class="d-flex justify-center align-center">
+                                    <v-btn fixed right top icon x-large elevation="0"
+                                        @click.prevent="isArtDialogActive = false">
+                                        <v-icon size=60>mdi-close</v-icon>
+                                    </v-btn>
+                                    <v-btn fixed left icon text v-show="currentArtIndex > 0"
+                                        :disabled="currentArtIndex <= 0" @click.prevent="decrementArtIndex">
+                                        <v-badge bottom offset-x="20" offset-y="-20" :value="currentArtIndex > 0"
+                                            :content="currentArtIndex">
+                                            <v-icon size="80">mdi-chevron-left</v-icon>
+                                        </v-badge>
+                                    </v-btn>
+                                    <img :src="currentArtProject.imgs[currentArtIndex]"
+                                        class="artDetailed disable-text-selection">
+                                    <v-btn fixed right icon text x-large elevation="0"
+                                        v-show="currentArtIndex < currentArtProject.imgs.length-1"
+                                        :disabled="currentArtIndex >= currentArtProject.imgs.length-1"
+                                        @click.prevent="incrementArtIndex">
+                                        <v-badge bottom offset-x="25" offset-y="-20"
+                                            :value="currentArtIndex < currentArtProject.imgs.length-1"
+                                            :content="currentArtProject.imgs.length - 1 - currentArtIndex">
+                                            <v-icon size="80">mdi-chevron-right</v-icon>
+                                        </v-badge>
+                                    </v-btn>
+                                </div>
                             </div>
                         </v-dialog>
                     </div>
@@ -224,15 +250,26 @@
             methods: {
                 onArtProjectClick: function (projectIndex) {
                     try {
-                        this.currentArtPiece = this.artProjectsReverse[projectIndex].imgs[0];
+                        this.currentArtProject = this.artProjectsReverse[projectIndex];
                         this.isArtDialogActive = true;
                     } catch (error) {
                         this.isArtDialogActive = false;
+                    } finally {
+                        this.currentArtIndex = 0;
+                    }
+                },
+                incrementArtIndex: function () {
+                    if (this.currentArtProject.imgs !== undefined && this.currentArtIndex < this.currentArtProject.imgs.length - 1) {
+                        this.currentArtIndex++;
+                    }
+                },
+                decrementArtIndex: function () {
+                    if (this.currentArtProject.imgs !== undefined && this.currentArtIndex > 0) {
+                        this.currentArtIndex--;
                     }
                 },
                 saveTab: function (tabIndex) {
                     localStorage.setItem("tabIndex", tabIndex);
-                    console.log(tabIndex);
                 }
             },
             computed: {
@@ -255,8 +292,8 @@
                     isReady: false,
                     tabIndex: 0,
                     isArtDialogActive: false,
-                    currentArtPiece: undefined,
-                    currentImgIndex: 0,
+                    currentArtProject: undefined,
+                    currentArtIndex: 0,
                     tabs: [
                         {
                             text: "The Developer",
@@ -377,6 +414,21 @@
                         }
                     ],
                     artProjects: [
+                        {
+                            title: 'Goblin head sculpt',
+                            imgs: [
+                                'https://i.postimg.cc/Y0L94h8Z/output.gif',
+                                'https://i.postimg.cc/BvfxJGZJ/0001.png',
+                                'https://i.postimg.cc/vZVNPMSy/0011.png',
+                                'https://i.postimg.cc/9MJ84fzd/0033.png',
+                                'https://i.postimg.cc/fbv5FbcG/0051.png',
+                                'https://i.postimg.cc/D0Rcs4hX/0077.png',
+                                'https://i.postimg.cc/DwkgwGBV/0094.png',
+                                'https://i.postimg.cc/wB9QhdC0/0135.png',
+                                'https://i.postimg.cc/QM6YCtFp/0159.png',
+                                'https://i.postimg.cc/sxWTT4wc/0172.png'
+                            ]
+                        },
                         {
                             title: 'Lumiel',
                             imgs: [
