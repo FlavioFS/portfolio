@@ -44,7 +44,7 @@
                     </v-layout>
                 </v-app-bar>
 
-                <v-tabs v-model="tabIndex" center-active icons-and-text centered show-arrows>
+                <v-tabs v-model="tabIndex" @change="saveTab($event)" center-active icons-and-text centered show-arrows>
                     <v-tab v-for="tab in tabs" :key="tab.text">
                         {{tab.text}}
                         <v-icon>{{tab.icon}}</v-icon>
@@ -100,7 +100,7 @@
                             </div>
                             </p>
                             <div class="d-flex flex-wrap justify-center align-center xs-12">
-                                <div v-for="img in dev.imgs" :key="img" class="mx-2">
+                                <div v-for="(img, index) in dev.imgs" :key="index" class="mx-2">
                                     <img :src="img" class="devImg">
                                 </div>
                             </div>
@@ -229,11 +229,25 @@
                     } catch (error) {
                         this.isArtDialogActive = false;
                     }
+                },
+                saveTab: function (tabIndex) {
+                    localStorage.setItem("tabIndex", tabIndex);
+                    console.log(tabIndex);
                 }
             },
             computed: {
                 artProjectsReverse() {
                     return this.artProjects.slice().reverse();
+                }
+            },
+            mounted() {
+                try {
+                    const tabIndex = parseInt(localStorage.getItem("tabIndex"));
+                    if (tabIndex >= 0 && tabIndex < this.tabs.length) {
+                        this.tabIndex = tabIndex;
+                    }
+                } catch (error) {
+                    console.log(error);
                 }
             },
             data() {
