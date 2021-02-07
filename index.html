@@ -63,7 +63,8 @@
                             <h2 class="mt-5">{{dev.title}}</h2>
                             <p v-if="dev.engine">
                             <div class="d-flex flex-row justify-center align-center">
-                                <a :href="dev.engine.website" target="_blank" :style="{'text-decoration': 'none'}">
+                                <a :href="dev.engine.website" target="_blank" :style="{'text-decoration': 'none'}"
+                                    class="mx-1">
                                     <v-btn rounded>
                                         <v-avatar size=27 tile>
                                             <svg>
@@ -74,10 +75,8 @@
                                     </v-btn>
                                 </a>
 
-                                <div v-if="dev.repo !== undefined || dev.store !== undefined">
-                                    <span class="mx-3">|</span>
-                                    <a v-if="dev.repo !== undefined" :href="dev.repo" target="_blank"
-                                        :style="{'text-decoration': 'none'}">
+                                <div v-if="dev.repo !== undefined" class="mx-1">
+                                    <a :href="dev.repo" target="_blank" :style="{'text-decoration': 'none'}">
                                         <v-btn rounded>
                                             <v-avatar size=30 tile>
                                                 <svg>
@@ -87,8 +86,10 @@
                                             <span class="ml-1">Source</span>
                                         </v-btn>
                                     </a>
-                                    <a v-if="dev.store !== undefined" :href="dev.store.link" target="_blank"
-                                        :style="{'text-decoration': 'none'}">
+                                </div>
+
+                                <div v-if="dev.store !== undefined" class="mx-1">
+                                    <a :href="dev.store.link" target="_blank" :style="{'text-decoration': 'none'}">
                                         <v-btn rounded>
                                             <v-avatar size=30 tile>
                                                 <svg>
@@ -99,6 +100,7 @@
                                         </v-btn>
                                     </a>
                                 </div>
+
                             </div>
                             </p>
                             <div class="d-flex flex-wrap justify-center align-center xs-12">
@@ -108,13 +110,10 @@
                             </div>
                             <v-divider horizontal class="primary my-4"></v-divider>
                         </div>
-                        <v-divider horizontal class="primary my-4"></v-divider>
-                        <v-divider horizontal class="primary my-4"></v-divider>
-
                     </div>
 
                     <!-- THE ARTIST -->
-                    <div v-if="tabIndex == 1" class="d-flex flex-column justify-center align-center">
+                    <div v-if="tabIndex == 1" class="d-flex flex-column justify-center align-center ma-4">
                         <div class="mt-4"></div>
                         <v-alert type='info' class="xs-1">
                             <div class="d-flex flex-wrap align-left justify-center">
@@ -189,7 +188,7 @@
                                 <a class="d-flex flex-row mt-2 justify-left" :style="{'text-decoration': 'none'}"
                                     href="https://www.instagram.com/flafdraws/" target="_blank">
                                     <v-icon class="mr-3">mdi-instagram</v-icon>
-                                    <span>Instagram DM</span>
+                                    <span :style="{ color: 'white'}">Instagram DM</span>
                                 </a>
                             </div>
 
@@ -212,19 +211,25 @@
                         </div>
                     </div>
 
+                    <br class="my-5"></br>
                 </div>
 
 
                 <v-footer padless fixed bottom=0 dense dark>
                     <v-row justify="center" no-gutters>
                         <v-btn v-for="media in social" :key="media.icon" color="white" text icon class="ma-2">
-                            <a :href="media.link" target="_blank">
-                                <v-avatar size=35>
-                                    <svg>
-                                        <image :xlink:href="media.icon" width="35" height="35" />
-                                    </svg>
-                                </v-avatar>
-                            </a>
+                            <v-tooltip top>
+                                <template v-slot:activator="{ on, attrs }">
+                                    <a v-bind="attrs" v-on="on" :href="media.link" target="_blank">
+                                        <v-avatar size=35>
+                                            <svg>
+                                                <image :xlink:href="media.icon" width="35" height="35" />
+                                            </svg>
+                                        </v-avatar>
+                                    </a>
+                                </template>
+                                <span>{{ media.name }}</span>
+                            </v-tooltip>
                         </v-btn>
                     </v-row>
                 </v-footer>
@@ -312,7 +317,7 @@
                         {
                             title: 'Battle transition shaders (old Pokémon Style)',
                             engine: {
-                                name: 'Godot Engine',
+                                name: 'Godot',
                                 icon: 'img/godot.png',
                                 website: 'https://godotengine.org/'
                             },
@@ -326,7 +331,7 @@
                         {
                             title: 'Player Finite Multi-State Machine (2D Platformer) + Skin Selector ',
                             engine: {
-                                name: 'Godot Engine',
+                                name: 'Godot',
                                 icon: 'img/godot.png',
                                 website: 'https://godotengine.org/'
                             },
@@ -339,7 +344,7 @@
                         {
                             title: 'Multi-state enemy behavior (Smashing Stone)',
                             engine: {
-                                name: 'Godot Engine',
+                                name: 'Godot',
                                 icon: 'img/godot.png',
                                 website: 'https://godotengine.org/'
                             },
@@ -403,6 +408,10 @@
                                 icon: 'img/lua.png',
                                 website: 'https://www.lua.org/'
                             },
+                            store: {
+                                icon: 'img/steam.svg',
+                                link: 'https://steamcommunity.com/sharedfiles/filedetails/?id=1934822334'
+                            },
                             repo: 'https://github.com/FlavioFS/5-minute-dungeon-tts-mod',
                             imgs: [
                                 'https://i.postimg.cc/GpyBYYST/sample3-next.gif',
@@ -418,15 +427,15 @@
                             title: 'Goblin head sculpt',
                             imgs: [
                                 'https://i.postimg.cc/Y0L94h8Z/output.gif',
-                                'https://i.postimg.cc/BvfxJGZJ/0001.png',
-                                'https://i.postimg.cc/vZVNPMSy/0011.png',
-                                'https://i.postimg.cc/9MJ84fzd/0033.png',
-                                'https://i.postimg.cc/fbv5FbcG/0051.png',
-                                'https://i.postimg.cc/D0Rcs4hX/0077.png',
-                                'https://i.postimg.cc/DwkgwGBV/0094.png',
-                                'https://i.postimg.cc/wB9QhdC0/0135.png',
-                                'https://i.postimg.cc/QM6YCtFp/0159.png',
-                                'https://i.postimg.cc/sxWTT4wc/0172.png'
+                                'https://i.postimg.cc/3NT572Yx/0001.png',
+                                'https://i.postimg.cc/0jYvJccS/0011.png',
+                                'https://i.postimg.cc/ZKm4hz5x/0033.png',
+                                'https://i.postimg.cc/DycFvpWk/0051.png',
+                                'https://i.postimg.cc/135Sf06g/0077.png',
+                                'https://i.postimg.cc/CxPgDZHc/0094.png',
+                                'https://i.postimg.cc/59LbG2bt/0135.png',
+                                'https://i.postimg.cc/W4dP725T/0159.png',
+                                'https://i.postimg.cc/W4xcWQyr/0172.png'
                             ]
                         },
                         {
@@ -477,18 +486,22 @@
                     },
                     social: [
                         {
+                            name: 'GitHub',
                             icon: 'img/github.svg',
                             link: 'https://www.github.com/FlavioFS/'
                         },
                         {
+                            name: 'ArtStation',
                             icon: 'img/artstation.svg',
                             link: 'https://www.artstation.com/flaf'
                         },
                         {
+                            name: 'DeviantArt',
                             icon: 'img/deviantart.svg',
                             link: 'https://www.deviantart.com/flafdraws'
                         },
                         {
+                            name: 'Instagram',
                             icon: 'img/instagram.svg',
                             link: 'https://www.instagram.com/flafdraws/'
                         }
