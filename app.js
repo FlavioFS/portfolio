@@ -122,10 +122,11 @@ const devProjects = [
         },
         repo: 'https://github.com/FlavioFS/5-minute-dungeon-tts-mod',
         imgs: [
-            'https://i.postimg.cc/DZQ8phh2/sample2-setup.gif',
-            'https://i.postimg.cc/BbMtsCtk/sample1-boss.gif',
-            'https://i.postimg.cc/GpyBYYST/sample3-next.gif',
-            'https://i.postimg.cc/4dRY1drL/sample4-draw.gif'
+            'https://i.postimg.cc/DytgN5dZ/tts-setup.gif',
+            'https://i.postimg.cc/bvR9sPXD/tts-boss.gif',
+            'https://i.postimg.cc/2ShwNv2x/tts-next.gif',
+            'https://i.postimg.cc/fbsvzLPQ/tts-draw.gif'
+
         ]
     }
 ];
