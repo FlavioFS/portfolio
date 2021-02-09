@@ -69,7 +69,7 @@ const devProjects = [
         },
         repo: 'https://github.com/FlavioFS/slot-test-client',
         imgs: [
-            'https://i.postimg.cc/63NhrYJX/slotclientdemo.gif',
+            'https://i.postimg.cc/mDpZwm1Z/slot-client.gif',
             'https://i.postimg.cc/cHZzcfPV/slotserverdemo.gif'
         ]
     },
@@ -152,7 +152,7 @@ const artProjects = [
     {
         title: 'Goblin head sculpt',
         imgs: [
-            'https://i.postimg.cc/Y0L94h8Z/output.gif',
+            'https://i.postimg.cc/MGtHX7xw/goblineevee.gif',
             'https://i.postimg.cc/3NT572Yx/0001.png',
             'https://i.postimg.cc/0jYvJccS/0011.png',
             'https://i.postimg.cc/ZKm4hz5x/0033.png',
