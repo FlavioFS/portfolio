@@ -22,7 +22,7 @@ const tabs = [
 //////////////////////////////////////////////////
 const devProjects = [
     {
-        title: 'Battle transition shaders (old Pokémon Style)',
+        title: 'Battle transition shaders (old Pokémon style)',
         engine: {
             name: 'Godot',
             icon: 'img/godot.png',
@@ -36,7 +36,7 @@ const devProjects = [
         ]
     },
     {
-        title: 'Player Finite Multi-State Machine (2D Platformer) + Skin Selector ',
+        title: 'Player Finite Multi-State Machine (2D platformer) + Skin Selector ',
         engine: {
             name: 'Godot',
             icon: 'img/godot.png',
@@ -49,7 +49,7 @@ const devProjects = [
         ]
     },
     {
-        title: 'Multi-state enemy behavior (Smashing Stone)',
+        title: 'Multi-state enemy behavior (Smashing stone)',
         engine: {
             name: 'Godot',
             icon: 'img/godot.png',
@@ -136,6 +136,19 @@ const devProjects = [
 //////////////////////////////////////////////////
 const artProjects = [
     {
+        title: 'Pink Ribbon',
+        imgs: [
+            'https://cdna.artstation.com/p/assets/images/images/033/706/738/large/flavio-freitas-flaf-pink-ribbon.jpg?1610372052'
+        ]
+    },
+    {
+        title: 'Lumiel',
+        imgs: [
+            'https://cdnb.artstation.com/p/assets/images/images/033/586/747/large/flavio-freitas-flaf-lumiel.jpg?1610025593',
+            'https://cdnb.artstation.com/p/assets/images/images/033/586/753/large/flavio-freitas-flaf-lumiel2.jpg?1610025613'
+        ]
+    },
+    {
         title: 'Goblin head sculpt',
         imgs: [
             'https://i.postimg.cc/Y0L94h8Z/output.gif',
@@ -148,19 +161,6 @@ const artProjects = [
             'https://i.postimg.cc/59LbG2bt/0135.png',
             'https://i.postimg.cc/W4dP725T/0159.png',
             'https://i.postimg.cc/W4xcWQyr/0172.png'
-        ]
-    },
-    {
-        title: 'Lumiel',
-        imgs: [
-            'https://cdnb.artstation.com/p/assets/images/images/033/586/747/large/flavio-freitas-flaf-lumiel.jpg?1610025593',
-            'https://cdnb.artstation.com/p/assets/images/images/033/586/753/large/flavio-freitas-flaf-lumiel2.jpg?1610025613'
-        ]
-    },
-    {
-        title: 'Pink Ribbon',
-        imgs: [
-            'https://cdna.artstation.com/p/assets/images/images/033/706/738/large/flavio-freitas-flaf-pink-ribbon.jpg?1610372052'
         ]
     }
 ];
@@ -248,7 +248,7 @@ new Vue({
     methods: {
         onArtProjectClick: function (projectIndex) {
             try {
-                this.currentArtProject = this.artProjectsReverse[projectIndex];
+                this.currentArtProject = this.artProjects[projectIndex];
                 this.isArtDialogActive = true;
             } catch (error) {
                 this.isArtDialogActive = false;
@@ -268,11 +268,6 @@ new Vue({
         },
         saveTab: function (tabIndex) {
             localStorage.setItem("tabIndex", tabIndex);
-        }
-    },
-    computed: {
-        artProjectsReverse() {
-            return this.artProjects.slice().reverse();
         }
     },
     mounted() {

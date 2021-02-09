@@ -3,6 +3,12 @@
 
 <head>
     <meta charset="utf-8">
+    <meta
+        content="https://cdnb.artstation.com/p/assets/images/images/011/523/497/large/flavio-sousa-grafico-de-recursos2.jpg?1530020062">
+    <meta name="twitter:title" content="Flávio Freitas - Personal Portfolio">
+    <meta name="twitter:description" content="Tech Artist | Software Developer">
+    <meta name="twitter:image"
+        content="https://cdnb.artstation.com/p/assets/images/images/011/523/497/large/flavio-sousa-grafico-de-recursos2.jpg?1530020062">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
@@ -11,7 +17,7 @@
     <link rel="shortcut icon" href="img/avatar.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="utils.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 </head>
 
@@ -118,7 +124,7 @@
                         </v-alert>
 
                         <div class="d-flex flex-wrap align-top justify-center">
-                            <div v-for="(proj, projectIndex) in artProjectsReverse">
+                            <div v-for="(proj, projectIndex) in artProjects">
                                 <v-hover v-slot="{ hover }">
                                     <v-badge :value="proj.imgs.length > 1" overlap :content="proj.imgs.length"
                                         offset-x="30" offset-y="30" color="primary">
@@ -148,7 +154,8 @@
                                             <v-icon size="80">mdi-chevron-left</v-icon>
                                         </v-badge>
                                     </v-btn>
-                                    <img :src="currentArtProject.imgs[currentArtIndex]"
+                                    <img v-show="imgIndex === currentArtIndex"
+                                        v-for="(img, imgIndex) in currentArtProject.imgs" :key="img" :src="img"
                                         class="artDetailed disable-text-selection">
                                     <v-btn fixed right icon text x-large elevation="0"
                                         v-show="currentArtIndex < currentArtProject.imgs.length-1"
