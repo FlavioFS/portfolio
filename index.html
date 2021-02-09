@@ -75,7 +75,7 @@
 
                 <div>
 
-                    <!-- THE DEVELOPER -->
+                    <!-- DEV -->
                     <div v-if="tabIndex == 0" class="v-flex justify-center">
                         <div v-for="(dev, index) in devProjects" :key="dev.title"
                             class="d-flex flex-column align-center justify-center mb-5 xs-12"
@@ -132,7 +132,7 @@
                         </div>
                     </div>
 
-                    <!-- THE ARTIST -->
+                    <!-- ART -->
                     <div v-if="tabIndex == 1" class="d-flex flex-column justify-center align-center ma-4">
                         <div class="mt-4"></div>
                         <v-alert type='info' class="xs-1">
@@ -191,7 +191,7 @@
                         </v-dialog>
                     </div>
 
-                    <!-- ABOUT -->
+                    <!-- CONTACT -->
                     <div v-if="tabIndex == 2">
                         <div class="mt-5"></div>
                         <div class="d-flex flex-column justify-center align-center">
@@ -222,7 +222,7 @@
 
                             <h2 class="mt-5">Software experience</h2>
                             <div class="d-flex flex-wrap mt-2 mb-4 justify-center">
-                                <div v-for="software in about.software" :key="software.name" class="mx-5 mb-4">
+                                <div v-for="software in contact.software" :key="software.name" class="mx-5 mb-4">
                                     <v-avatar tile>
                                         <img :src="software.icon">
                                     </v-avatar>

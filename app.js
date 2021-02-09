@@ -3,15 +3,15 @@
 //////////////////////////////////////////////////
 const tabs = [
     {
-        text: "The Developer",
+        text: "Dev",
         icon: "mdi-code-braces"
     },
     {
-        text: "The Artist",
+        text: "Art",
         icon: "mdi-brush"
     },
     {
-        text: "About",
+        text: "Contact",
         icon: "mdi-account-box"
     }
 ];
@@ -168,9 +168,9 @@ const artProjects = [
 
 
 //////////////////////////////////////////////////
-// About
+// contact
 //////////////////////////////////////////////////
-const about = {
+const contact = {
     software: [
         {
             name: "Krita",
@@ -291,7 +291,7 @@ new Vue({
             tabs: tabs,
             devProjects: devProjects,
             artProjects: artProjects,
-            about: about,
+            contact: contact,
             social: social
         }
     }
