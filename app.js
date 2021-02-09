@@ -104,8 +104,9 @@ const devProjects = [
             website: 'https://unity.com/'
         },
         imgs: [
-            'https://i.postimg.cc/nzcxP9JQ/water-shader1.gif',
-            'https://i.postimg.cc/vZsZvBc5/water-shader2.gif'
+            'https://i.postimg.cc/m2tzXJjx/water-shader1.gif',
+            'https://i.postimg.cc/Y2XLxM1f/water-shader2.gif',
+            'https://i.postimg.cc/Y0y42zpy/water-shader3.gif'
         ]
     },
     {
@@ -121,9 +122,8 @@ const devProjects = [
         },
         repo: 'https://github.com/FlavioFS/5-minute-dungeon-tts-mod',
         imgs: [
-            'https://i.postimg.cc/GpyBYYST/sample3-next.gif',
-            'https://i.postimg.cc/BbMtsCtk/sample1-boss.gif',
             'https://i.postimg.cc/DZQ8phh2/sample2-setup.gif',
+            'https://i.postimg.cc/BbMtsCtk/sample1-boss.gif',
             'https://i.postimg.cc/GpyBYYST/sample3-next.gif',
             'https://i.postimg.cc/4dRY1drL/sample4-draw.gif'
         ]
