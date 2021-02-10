@@ -168,37 +168,49 @@ const artProjects = [
 
 
 //////////////////////////////////////////////////
-// contact
+// Contact
 //////////////////////////////////////////////////
 const contact = {
     software: [
         {
             name: "Krita",
-            icon: "img/krita.png"
+            icon: "img/krita.png",
+            link: "https://krita.org/"
         },
         {
             name: "Photoshop",
-            icon: "img/photoshop.png"
+            icon: "img/photoshop.png",
+            link: "https://www.adobe.com/br/products/photoshop.html/"
+        },
+        {
+            name: "Blender",
+            icon: "img/blender.png",
+            link: "https://www.blender.org/"
         },
         {
             name: "Unity",
-            icon: "img/unity.png"
+            icon: "img/unity.png",
+            link: "https://unity.com/"
         },
         {
             name: "Godot",
-            icon: "img/godot.png"
+            icon: "img/godot.png",
+            link: "https://godotengine.org/"
         },
         {
             name: "Illustrator",
-            icon: "img/illustrator.png"
+            icon: "img/illustrator.png",
+            link: "https://www.adobe.com/br/products/illustrator.html/"
         },
         {
             name: "Aseprite",
-            icon: "img/aseprite.png"
+            icon: "img/aseprite.png",
+            link: "https://www.aseprite.org/"
         },
         {
             name: "Pyxel Edit",
-            icon: "img/pyxeledit.png"
+            icon: "img/pyxeledit.png",
+            link: "https://www.pyxeledit.com/"
         }
     ]
 };
@@ -269,6 +281,13 @@ new Vue({
         },
         saveTab: function (tabIndex) {
             localStorage.setItem("tabIndex", tabIndex);
+        },
+        backToTop: function () {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
         }
     },
     mounted() {

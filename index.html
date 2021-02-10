@@ -85,7 +85,7 @@
                             <div class="d-flex flex-row justify-center align-center">
                                 <a :href="dev.engine.website" target="_blank" :style="{'text-decoration': 'none'}"
                                     class="mx-1">
-                                    <v-btn rounded>
+                                    <v-btn rounded class="capitalize">
                                         <v-avatar size=27 tile>
                                             <svg>
                                                 <image :xlink:href="dev.engine.icon" width="27" height="27" />
@@ -97,7 +97,7 @@
 
                                 <div v-if="dev.repo !== undefined" class="mx-1">
                                     <a :href="dev.repo" target="_blank" :style="{'text-decoration': 'none'}">
-                                        <v-btn rounded>
+                                        <v-btn rounded class="capitalize">
                                             <v-avatar size=30 tile>
                                                 <svg>
                                                     <image xlink:href="img/github.svg" width="30" height="30" />
@@ -110,7 +110,7 @@
 
                                 <div v-if="dev.store !== undefined" class="mx-1">
                                     <a :href="dev.store.link" target="_blank" :style="{'text-decoration': 'none'}">
-                                        <v-btn rounded>
+                                        <v-btn rounded class="capitalize">
                                             <v-avatar size=30 tile>
                                                 <svg>
                                                     <image :xlink:href="dev.store.icon" width="30" height="30" />
@@ -222,12 +222,13 @@
 
                             <h2 class="mt-5">Software experience</h2>
                             <div class="d-flex flex-wrap mt-2 mb-4 justify-center">
-                                <div v-for="software in contact.software" :key="software.name" class="mx-5 mb-4">
-                                    <v-avatar tile>
+                                <v-btn v-for="software in contact.software" :key="software.name" :href="software.link"
+                                    target="_blank" class="capitalize mx-1 mb-4" rounded>
+                                    <v-avatar tile size=25>
                                         <img :src="software.icon">
                                     </v-avatar>
-                                    <span class="ml-1">{{software.name}}</span>
-                                </div>
+                                    <span class="ml-1" :style="{color: 'white'}">{{software.name}}</span>
+                                    </a>
                             </div>
                         </div>
                     </div>
@@ -254,6 +255,11 @@
                         </v-btn>
                     </v-row>
                 </v-footer>
+
+                <v-btn fab small fixed right bottom color="primary" class="scroll-top" @click="backToTop">
+                    <v-icon>mdi-chevron-up</v-icon>
+                </v-btn>
+
             </v-main>
         </v-app>
     </div>
