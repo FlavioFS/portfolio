@@ -345,4 +345,4 @@ new Vue({
     }
 });
 
-// Force page update
+// Force page update.
