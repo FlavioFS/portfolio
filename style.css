@@ -27,10 +27,18 @@
     max-height: 900px;
 } */
 
-.artDialog {
+.artDialogBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     background-color: #222;
+    z-index: -1;
+}
+
+.artDialog {
+    background-color: #222 !important;
 }
 
 .artCardBox {
@@ -38,7 +46,9 @@
     height: 300px;
 }
 
-.artCardImg {
+.artCardFit {
+    max-width: 200vw;
+    max-height: 200vh;
     object-fit: contain !important;
 }
 

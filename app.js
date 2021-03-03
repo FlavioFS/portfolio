@@ -327,7 +327,11 @@ new Vue({
                     case 'ArrowLeft':
                     this.decrementArtIndex();
                     break;
-            
+
+                    case 'Escape':
+                    this.isArtDialogActive = false;
+                    break;
+                
                 default:
                     break;
             }

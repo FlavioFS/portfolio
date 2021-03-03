@@ -152,9 +152,7 @@
                                 <v-hover v-slot="{ hover }">
                                     <v-badge :value="proj.imgs.length > 1" overlap :content="proj.imgs.length"
                                         offset-x="30" offset-y="35" color="primary">
-                                        <v-card tile flat :class="{ 'on-hover': hover }" width=300>
-                                            <div v-show="hover" :style="{'background-color': 'rgba(#000, 0.5f)'}">
-                                            </div>
+                                        <v-card tile flat :class="{ 'on-hover': !isMobile && hover }" width=300>
                                             <v-toolbar flat dense class="ma-0 pa-0 zoom-in grey--text"
                                                 v-on:click.prevent="onArtProjectClick(projectIndex)">
                                                 {{proj.title}}
@@ -175,7 +173,7 @@
                                                 <v-spacer></v-spacer>
                                             </v-card-actions>
                                             <v-expand-transition>
-                                                <div v-show="proj.expanded || hover">
+                                                <div v-show="proj.expanded || (!isMobile && hover)">
                                                     <v-divider></v-divider>
                                                     <v-card-text class="grey--text">
                                                         <p class="ma-0">{{proj.description}}</p>
@@ -190,6 +188,7 @@
                         </div>
 
                         <v-dialog persistent fullscreen v-model="isArtDialogActive">
+                            <div class="artDialogBackground"></div>
                             <div flat class="ma-0 pa-0 artDialog">
                                 <div v-if="currentArtProject !== undefined && currentArtProject.imgs.length > 0"
                                     class="artDetailedContainer no-pointer">
@@ -209,17 +208,18 @@
                                         v-show="currentArtIndex < currentArtProject.imgs.length-1"
                                         :disabled="currentArtIndex >= currentArtProject.imgs.length-1"
                                         @click.prevent="incrementArtIndex">
-                                        <v-badge bottom offset-x="25" offset-y="-20"
+                                        <v-badge bottom offset-x="25" offset-y="-20" class="mr-4"
                                             :value="currentArtIndex < currentArtProject.imgs.length-1"
                                             :content="currentArtProject.imgs.length - 1 - currentArtIndex">
                                             <v-icon size="80">mdi-chevron-right</v-icon>
                                         </v-badge>
                                     </v-btn>
                                 </div>
-                                <div v-if="currentArtProject !== undefined && currentArtProject.imgs.length > 0">
+                                <div v-if="currentArtProject !== undefined && currentArtProject.imgs.length > 0"
+                                    class="artCardFit">
                                     <img v-show="imgIndex === currentArtIndex"
                                         v-for="(img, imgIndex) in currentArtProject.imgs" :key="img" :src="img"
-                                        class="disable-text-selection" />
+                                        class="disable-text-selection artCardFit" />
                                 </div>
                             </div>
                         </v-dialog>
