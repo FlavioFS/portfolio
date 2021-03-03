@@ -305,6 +305,10 @@ new Vue({
         }
     },
     mounted() {
+        
+        // Force GitHub Pages to update by changing the line below.
+        const forceUpdate = true; // This variable has no impact in the code.
+
         try {
             const tabIndex = parseInt(localStorage.getItem("tabIndex"));
             if (tabIndex >= 0 && tabIndex < this.tabs.length) {
