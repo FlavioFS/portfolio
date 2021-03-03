@@ -137,13 +137,29 @@ const devProjects = [
 //////////////////////////////////////////////////
 const artProjects = [
     {
+        title: 'Enpitsu, the art bender',
+        description: "Original character concept I've submitted to DeviantArt's Artist Avatar Challenge.",
+        expanded: false,
+        date: '2021/02/28',
+        thumb: 'https://i.postimg.cc/T3vxjSfL/enpitsu-insta8.png',
+        imgs: [
+            'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/23a9f1a3-e872-448d-8b4d-9413eaef12c7/def6uq9-5bd670b7-8853-4c29-84ff-b2bad66b7b3a.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMjNhOWYxYTMtZTg3Mi00NDhkLThiNGQtOTQxM2VhZWYxMmM3XC9kZWY2dXE5LTViZDY3MGI3LTg4NTMtNGMyOS04NGZmLWIyYmFkNjZiN2IzYS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.x25uj2JNtpOp_rwSJ71XZSHkYVbCWX5ozC-t1QOcu4k'
+        ],
+    },
+    {
         title: 'Pink Ribbon',
+        description: 'Style and structure research.',
+        expanded: false,
+        date: '2021/01/09',
         imgs: [
             'https://cdna.artstation.com/p/assets/images/images/033/706/738/large/flavio-freitas-flaf-pink-ribbon.jpg?1610372052'
         ]
     },
     {
-        title: 'Lumiel',
+        title: 'Lumiel, the light elf',
+        description: 'My first look into this original character concept.',
+        expanded: false,
+        date: '2021/01/07',
         imgs: [
             'https://cdnb.artstation.com/p/assets/images/images/033/586/747/large/flavio-freitas-flaf-lumiel.jpg?1610025593',
             'https://cdnb.artstation.com/p/assets/images/images/033/586/753/large/flavio-freitas-flaf-lumiel2.jpg?1610025613'
@@ -151,17 +167,12 @@ const artProjects = [
     },
     {
         title: 'Goblin head sculpt',
+        description: 'A 3D character modelling practice session.',
+        expanded: false,
+        date: '2020/10/02',
+        thumb: 'https://i.postimg.cc/3NT572Yx/0001.png',
         imgs: [
-            'https://i.postimg.cc/MGtHX7xw/goblineevee.gif',
-            'https://i.postimg.cc/3NT572Yx/0001.png',
-            'https://i.postimg.cc/0jYvJccS/0011.png',
-            'https://i.postimg.cc/ZKm4hz5x/0033.png',
-            'https://i.postimg.cc/DycFvpWk/0051.png',
-            'https://i.postimg.cc/135Sf06g/0077.png',
-            'https://i.postimg.cc/CxPgDZHc/0094.png',
-            'https://i.postimg.cc/59LbG2bt/0135.png',
-            'https://i.postimg.cc/W4dP725T/0159.png',
-            'https://i.postimg.cc/W4xcWQyr/0172.png'
+            'https://i.postimg.cc/tTcdbmXW/goblin-ps.gif'
         ]
     }
 ];
@@ -256,6 +267,9 @@ new Vue({
     computed: {
         isMobile: () => {
             return window.isMobile();
+        },
+        isArtPieceSelected: () => {
+            return (this.currentArtProject !== undefined) && (this.currentArtProject.imgs.length > 0);
         }
     },
     methods: {
@@ -299,6 +313,21 @@ new Vue({
         } catch (error) {
             console.log(error);
         }
+
+        window.addEventListener('keyup', (event) => {
+            switch (event.key) {
+                case 'ArrowRight':
+                    this.incrementArtIndex();
+                    break;
+
+                    case 'ArrowLeft':
+                    this.decrementArtIndex();
+                    break;
+            
+                default:
+                    break;
+            }
+        });
     },
     data() {
         return {

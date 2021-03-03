@@ -9,23 +9,23 @@
     <meta property="og:url" content="https://flaviofs.github.io/portfolio/">
     <meta property="og:site_name" content="flafdraws">
     <meta property="og:title" content="Flávio Freitas - Personal Portfolio - @flafdraws">
-    <meta property="og:image" content="https://i.postimg.cc/YSg6Gy0F/lumiel-og.png">
-    <meta property="og:description" content="Tech Artist | Software Developer | Social media: @flafdraws">
+    <meta property="og:image" content="https://i.postimg.cc/yd4DNr4X/enpitsu-og.png">
+    <meta property="og:description" content="Artist | Software Developer | Social media: @flafdraws">
     <meta property="og:type" content="website">
-    <meta property="og:image:secure_url" content="https://i.postimg.cc/YSg6Gy0F/lumiel-og.png">
+    <meta property="og:image:secure_url" content="https://i.postimg.cc/yd4DNr4X/enpitsu-og.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Flávio Freitas - Personal Portfolio - @flafdraws">
-    <meta name="twitter:description" content="Tech Artist | Software Developer | Social media: @flafdraws">
-    <meta name="twitter:image" content="https://i.postimg.cc/YSg6Gy0F/lumiel-og.png">
-    <meta name="image" content="https://i.postimg.cc/YSg6Gy0F/lumiel-og.png">
+    <meta name="twitter:description" content="Artist | Software Developer | Social media: @flafdraws">
+    <meta name="twitter:image" content="https://i.postimg.cc/yd4DNr4X/enpitsu-og.png">
+    <meta name="image" content="https://i.postimg.cc/yd4DNr4X/enpitsu-og.png">
     <meta name="twitter:url" content="https://flaviofs.github.io/portfolio/">
     <meta name="og_twitter_card" content="summary_large_image">
 
     <!-- Primary Meta Tags -->
     <title>Flávio Freitas - Personal Portfolio</title>
-    <meta name="description" content="Tech Artist | Software Developer | Social media: @flafdraws">
+    <meta name="description" content="Artist | Software Developer | Social media: @flafdraws">
     <!-- META TAGS -->
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,700,900" rel="stylesheet">
@@ -56,7 +56,7 @@
                                 <h1>Flávio Freitas</h1>
                             </v-row>
                             <v-row>
-                                <span class="subheading"> Tech Artist | Software Developer</span>
+                                <span class="subheading"> Artist | Software Developer</span>
                             </v-row>
                             <v-row>
                                 <span class="caption">@flafdraws</span>
@@ -135,7 +135,7 @@
                     <!-- ART -->
                     <div v-if="tabIndex == 1" class="d-flex flex-column justify-center align-center ma-4">
                         <div class="mt-4"></div>
-                        <v-alert type='info' class="xs-1">
+                        <v-alert type='info' color="info darken-1" class="xs-1">
                             <div class="d-flex flex-wrap align-left justify-center">
                                 <span class="mr-1">This portfolio is under construction.</span>
                                 <span>New pieces will be uploaded soon. </span>
@@ -146,12 +146,38 @@
                             <div v-for="(proj, projectIndex) in artProjects">
                                 <v-hover v-slot="{ hover }">
                                     <v-badge :value="proj.imgs.length > 1" overlap :content="proj.imgs.length"
-                                        offset-x="30" offset-y="30" color="primary">
-                                        <v-card tile flat :class="{ 'on-hover': hover }"
-                                            v-on:click="onArtProjectClick(projectIndex)">
+                                        offset-x="30" offset-y="35" color="primary">
+                                        <v-card tile flat :class="{ 'on-hover': hover }" width=300>
                                             <div v-show="hover" :style="{'background-color': 'rgba(#000, 0.5f)'}">
                                             </div>
-                                            <img :src="proj.imgs[0]" :alt="`Image ${projectIndex}`" width="300">
+                                            <v-toolbar flat dense class="ma-0 pa-0 zoom-in grey--text"
+                                                v-on:click.prevent="onArtProjectClick(projectIndex)">
+                                                {{proj.title}}
+                                            </v-toolbar>
+                                            <span v-on:click.prevent="onArtProjectClick(projectIndex)" class="zoom-in">
+                                                <v-img contain height="300" :src="proj.thumb || proj.imgs[0]"
+                                                    :alt="`Image ${projectIndex}`"></v-img>
+                                            </span>
+                                            <v-card-actions>
+                                                <v-spacer></v-spacer>
+                                                <v-btn :color="proj.expanded ? 'info' : ''" icon class="elevation-0"
+                                                    v-ripple="{ class: 'info--text' }"
+                                                    @click="proj.expanded = !proj.expanded">
+                                                    <v-icon>{{ proj.expanded ? 'mdi-chevron-up' :
+                                                        'mdi-chevron-down' }}
+                                                    </v-icon>
+                                                </v-btn>
+                                                <v-spacer></v-spacer>
+                                            </v-card-actions>
+                                            <v-expand-transition>
+                                                <div v-show="proj.expanded || hover">
+                                                    <v-divider></v-divider>
+                                                    <v-card-text class="grey--text">
+                                                        <p class="ma-0">{{proj.description}}</p>
+                                                        <p class="mx-2 mb-0 mt-1 caption text-right">{{proj.date}}</p>
+                                                    </v-card-text>
+                                                </div>
+                                            </v-expand-transition>
                                         </v-card>
                                     </v-badge>
                                 </v-hover>
@@ -159,24 +185,22 @@
                         </div>
 
                         <v-dialog persistent fullscreen v-model="isArtDialogActive">
-                            <div class="d-flex justify-center align-center artDetailedContainer">
+                            <div flat class="d-flex justify-center ma-0 pa-0 artDialog">
                                 <div v-if="currentArtProject !== undefined && currentArtProject.imgs.length > 0"
-                                    class="d-flex justify-center align-center">
+                                    class="artDetailedContainer no-pointer">
                                     <v-btn fixed right top icon x-large elevation="0"
                                         @click.prevent="isArtDialogActive = false">
                                         <v-icon size=60>mdi-close</v-icon>
                                     </v-btn>
-                                    <v-btn fixed left icon text v-show="currentArtIndex > 0"
-                                        :disabled="currentArtIndex <= 0" @click.prevent="decrementArtIndex">
+                                    <v-btn fixed top left icon text :style="{top: '50%', transform:'translateY(-50%)'}"
+                                        v-show="currentArtIndex > 0" :disabled="currentArtIndex <= 0"
+                                        @click.prevent="decrementArtIndex">
                                         <v-badge bottom offset-x="20" offset-y="-20" :value="currentArtIndex > 0"
                                             :content="currentArtIndex">
                                             <v-icon size="80">mdi-chevron-left</v-icon>
                                         </v-badge>
                                     </v-btn>
-                                    <img v-show="imgIndex === currentArtIndex"
-                                        v-for="(img, imgIndex) in currentArtProject.imgs" :key="img" :src="img"
-                                        class="artDetailed disable-text-selection">
-                                    <v-btn fixed right icon text x-large elevation="0"
+                                    <v-btn fixed top right icon text :style="{top: '50%', transform:'translateY(-50%)'}"
                                         v-show="currentArtIndex < currentArtProject.imgs.length-1"
                                         :disabled="currentArtIndex >= currentArtProject.imgs.length-1"
                                         @click.prevent="incrementArtIndex">
@@ -186,6 +210,11 @@
                                             <v-icon size="80">mdi-chevron-right</v-icon>
                                         </v-badge>
                                     </v-btn>
+                                </div>
+                                <div v-if="currentArtProject !== undefined && currentArtProject.imgs.length > 0">
+                                    <img v-show="imgIndex === currentArtIndex"
+                                        v-for="(img, imgIndex) in currentArtProject.imgs" :key="img" :src="img"
+                                        class="disable-text-selection" />
                                 </div>
                             </div>
                         </v-dialog>
