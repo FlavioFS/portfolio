@@ -239,7 +239,7 @@ const social = [
     {
         name: 'ArtStation',
         icon: 'img/artstation.svg',
-        link: 'https://www.artstation.com/flaf'
+        link: 'https://www.artstation.com/flafdraws'
     },
     {
         name: 'DeviantArt',
