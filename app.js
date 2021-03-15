@@ -232,14 +232,9 @@ const contact = {
 //////////////////////////////////////////////////
 const social = [
     {
-        name: 'GitHub',
-        icon: 'img/github.svg',
-        link: 'https://www.github.com/FlavioFS/'
-    },
-    {
-        name: 'ArtStation',
-        icon: 'img/artstation.svg',
-        link: 'https://www.artstation.com/flafdraws'
+        name: 'Instagram',
+        icon: 'img/instagram.svg',
+        link: 'https://www.instagram.com/flafdraws/'
     },
     {
         name: 'DeviantArt',
@@ -247,9 +242,14 @@ const social = [
         link: 'https://www.deviantart.com/flafdraws'
     },
     {
-        name: 'Instagram',
-        icon: 'img/instagram.svg',
-        link: 'https://www.instagram.com/flafdraws/'
+        name: 'ArtStation',
+        icon: 'img/artstation.svg',
+        link: 'https://www.artstation.com/flafdraws'
+    },
+    {
+        name: 'GitHub',
+        icon: 'img/github.svg',
+        link: 'https://www.github.com/FlavioFS/'
     },
     {
         name: 'Linktree',
