@@ -250,6 +250,11 @@ const social = [
         name: 'Instagram',
         icon: 'img/instagram.svg',
         link: 'https://www.instagram.com/flafdraws/'
+    },
+    {
+        name: 'Linktree',
+        icon: 'img/linktree.svg',
+        link: 'https://linktr.ee/flafdraws'
     }
 ];
 
