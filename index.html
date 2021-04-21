@@ -79,193 +79,204 @@
                 </v-tabs>
 
                 <div>
+                    <!-- ART -->
+                    <v-lazy v-if="tabIndex == 0">
+                        <div class="d-flex flex-column justify-center align-center ma-4">
+                            <div class="mt-4"></div>
+                            <v-alert type='info' color="info darken-1" class="xs-1">
+                                <div class="d-flex flex-wrap align-left justify-center">
+                                    <span class="mr-1">This portfolio is under construction.</span>
+                                    <span>New pieces will be uploaded soon. </span>
+                                </div>
+                            </v-alert>
+
+                            <div class="d-flex flex-wrap align-top justify-center">
+                                <div v-for="(proj, projectIndex) in artProjects">
+                                    <v-hover v-slot="{ hover }">
+                                        <v-badge :value="proj.imgs.length > 1" overlap :content="proj.imgs.length"
+                                            offset-x="30" offset-y="35" color="primary">
+                                            <v-card tile flat :class="{ 'on-hover': !isMobile && hover }" width=300>
+                                                <v-toolbar flat dense class="ma-0 pa-0 zoom-in grey--text"
+                                                    v-on:click.prevent="onArtProjectClick(projectIndex)">
+                                                    {{proj.title}}
+                                                </v-toolbar>
+                                                <span v-on:click.prevent="onArtProjectClick(projectIndex)"
+                                                    class="zoom-in">
+                                                    <v-img contain height="300" :src="proj.thumb || proj.imgs[0]"
+                                                        :alt="`Image ${projectIndex}`"></v-img>
+                                                </span>
+                                                <v-card-actions>
+                                                    <v-spacer></v-spacer>
+                                                    <v-btn :color="proj.expanded ? 'info' : ''" icon class="elevation-0"
+                                                        v-ripple="{ class: 'info--text' }"
+                                                        @click="proj.expanded = !proj.expanded">
+                                                        <v-icon>{{ proj.expanded ? 'mdi-chevron-up' :
+                                                            'mdi-chevron-down' }}
+                                                        </v-icon>
+                                                    </v-btn>
+                                                    <v-spacer></v-spacer>
+                                                </v-card-actions>
+                                                <v-expand-transition>
+                                                    <div v-show="proj.expanded || (!isMobile && hover)">
+                                                        <v-divider></v-divider>
+                                                        <v-card-text class="grey--text">
+                                                            <p class="ma-0">{{proj.description}}</p>
+                                                            <p class="mx-2 mb-0 mt-1 caption text-right">{{proj.date}}
+                                                            </p>
+                                                        </v-card-text>
+                                                    </div>
+                                                </v-expand-transition>
+                                            </v-card>
+                                        </v-badge>
+                                    </v-hover>
+                                </div>
+                            </div>
+
+                            <v-dialog persistent fullscreen v-model="isArtDialogActive">
+                                <div class="artDialogBackground"></div>
+                                <div flat class="ma-0 pa-0 artDialog">
+                                    <div v-if="currentArtProject !== undefined && currentArtProject.imgs.length > 0"
+                                        class="artDetailedContainer no-pointer">
+                                        <v-btn fixed right top icon x-large elevation="0"
+                                            @click.prevent="isArtDialogActive = false">
+                                            <v-icon size=60>mdi-close</v-icon>
+                                        </v-btn>
+                                        <v-btn fixed top left icon text
+                                            :style="{top: '50%', transform:'translateY(-50%)'}"
+                                            v-show="currentArtIndex > 0" :disabled="currentArtIndex <= 0"
+                                            @click.prevent="decrementArtIndex">
+                                            <v-badge bottom offset-x="20" offset-y="-20" :value="currentArtIndex > 0"
+                                                :content="currentArtIndex">
+                                                <v-icon size="80">mdi-chevron-left</v-icon>
+                                            </v-badge>
+                                        </v-btn>
+                                        <v-btn fixed top right icon text
+                                            :style="{top: '50%', transform:'translateY(-50%)'}"
+                                            v-show="currentArtIndex < currentArtProject.imgs.length-1"
+                                            :disabled="currentArtIndex >= currentArtProject.imgs.length-1"
+                                            @click.prevent="incrementArtIndex">
+                                            <v-badge bottom offset-x="25" offset-y="-20" class="mr-4"
+                                                :value="currentArtIndex < currentArtProject.imgs.length-1"
+                                                :content="currentArtProject.imgs.length - 1 - currentArtIndex">
+                                                <v-icon size="80">mdi-chevron-right</v-icon>
+                                            </v-badge>
+                                        </v-btn>
+                                    </div>
+                                    <div v-if="currentArtProject !== undefined && currentArtProject.imgs.length > 0"
+                                        class="artCardFit">
+                                        <img v-show="imgIndex === currentArtIndex"
+                                            v-for="(img, imgIndex) in currentArtProject.imgs" :key="img" :src="img"
+                                            class="disable-text-selection artCardFit" />
+                                    </div>
+                                </div>
+                            </v-dialog>
+                        </div>
+                    </v-lazy>
+
 
                     <!-- DEV -->
-                    <div v-if="tabIndex == 0" class="v-flex justify-center">
-                        <div v-for="(dev, index) in devProjects" :key="dev.title"
-                            class="d-flex flex-column align-center justify-center mb-5 xs-12"
-                            :style="{'background-color': `${index % 2 == 0 ? '#181818' : '#121212'}` }">
-                            <h2 class="mt-5">{{dev.title}}</h2>
-                            <p v-if="dev.engine">
-                            <div class="d-flex flex-row justify-center align-center">
-                                <a :href="dev.engine.website" target="_blank" :style="{'text-decoration': 'none'}"
-                                    class="mx-1">
-                                    <v-btn rounded class="capitalize">
-                                        <v-avatar size=27 tile>
-                                            <svg>
-                                                <image :xlink:href="dev.engine.icon" width="27" height="27" />
-                                            </svg>
-                                        </v-avatar>
-                                        <span class="ml-2">{{dev.engine.name}}</span>
-                                    </v-btn>
-                                </a>
-
-                                <div v-if="dev.repo !== undefined" class="mx-1">
-                                    <a :href="dev.repo" target="_blank" :style="{'text-decoration': 'none'}">
+                    <v-lazy v-if="tabIndex == 1">
+                        <div class="v-flex justify-center">
+                            <div v-for="(dev, index) in devProjects" :key="dev.title"
+                                class="d-flex flex-column align-center justify-center mb-5 xs-12"
+                                :style="{'background-color': `${index % 2 == 0 ? '#181818' : '#121212'}` }">
+                                <h2 class="mt-5">{{dev.title}}</h2>
+                                <p v-if="dev.engine">
+                                <div class="d-flex flex-row justify-center align-center">
+                                    <a :href="dev.engine.website" target="_blank" :style="{'text-decoration': 'none'}"
+                                        class="mx-1">
                                         <v-btn rounded class="capitalize">
-                                            <v-avatar size=30 tile>
+                                            <v-avatar size=27 tile>
                                                 <svg>
-                                                    <image xlink:href="img/github.svg" width="30" height="30" />
+                                                    <image :xlink:href="dev.engine.icon" width="27" height="27" />
                                                 </svg>
                                             </v-avatar>
-                                            <span class="ml-1">Source</span>
+                                            <span class="ml-2">{{dev.engine.name}}</span>
                                         </v-btn>
                                     </a>
+
+                                    <div v-if="dev.repo !== undefined" class="mx-1">
+                                        <a :href="dev.repo" target="_blank" :style="{'text-decoration': 'none'}">
+                                            <v-btn rounded class="capitalize">
+                                                <v-avatar size=30 tile>
+                                                    <svg>
+                                                        <image xlink:href="img/github.svg" width="30" height="30" />
+                                                    </svg>
+                                                </v-avatar>
+                                                <span class="ml-1">Source</span>
+                                            </v-btn>
+                                        </a>
+                                    </div>
+
+                                    <div v-if="dev.store !== undefined" class="mx-1">
+                                        <a :href="dev.store.link" target="_blank" :style="{'text-decoration': 'none'}">
+                                            <v-btn rounded class="capitalize">
+                                                <v-avatar size=30 tile>
+                                                    <svg>
+                                                        <image :xlink:href="dev.store.icon" width="30" height="30" />
+                                                    </svg>
+                                                </v-avatar>
+                                                <span class="ml-1">App</span>
+                                            </v-btn>
+                                        </a>
+                                    </div>
+
                                 </div>
-
-                                <div v-if="dev.store !== undefined" class="mx-1">
-                                    <a :href="dev.store.link" target="_blank" :style="{'text-decoration': 'none'}">
-                                        <v-btn rounded class="capitalize">
-                                            <v-avatar size=30 tile>
-                                                <svg>
-                                                    <image :xlink:href="dev.store.icon" width="30" height="30" />
-                                                </svg>
-                                            </v-avatar>
-                                            <span class="ml-1">App</span>
-                                        </v-btn>
-                                    </a>
+                                </p>
+                                <div class="d-flex flex-wrap justify-center align-center xs-12">
+                                    <div v-for="(img, index) in dev.imgs" :key="index" class="mx-2">
+                                        <img :src="img" class="devImg">
+                                    </div>
                                 </div>
-
-                            </div>
-                            </p>
-                            <div class="d-flex flex-wrap justify-center align-center xs-12">
-                                <div v-for="(img, index) in dev.imgs" :key="index" class="mx-2">
-                                    <img :src="img" class="devImg">
-                                </div>
-                            </div>
-                            <v-divider horizontal class="primary my-4"></v-divider>
-                        </div>
-                    </div>
-
-                    <!-- ART -->
-                    <div v-if="tabIndex == 1" class="d-flex flex-column justify-center align-center ma-4">
-                        <div class="mt-4"></div>
-                        <v-alert type='info' color="info darken-1" class="xs-1">
-                            <div class="d-flex flex-wrap align-left justify-center">
-                                <span class="mr-1">This portfolio is under construction.</span>
-                                <span>New pieces will be uploaded soon. </span>
-                            </div>
-                        </v-alert>
-
-                        <div class="d-flex flex-wrap align-top justify-center">
-                            <div v-for="(proj, projectIndex) in artProjects">
-                                <v-hover v-slot="{ hover }">
-                                    <v-badge :value="proj.imgs.length > 1" overlap :content="proj.imgs.length"
-                                        offset-x="30" offset-y="35" color="primary">
-                                        <v-card tile flat :class="{ 'on-hover': !isMobile && hover }" width=300>
-                                            <v-toolbar flat dense class="ma-0 pa-0 zoom-in grey--text"
-                                                v-on:click.prevent="onArtProjectClick(projectIndex)">
-                                                {{proj.title}}
-                                            </v-toolbar>
-                                            <span v-on:click.prevent="onArtProjectClick(projectIndex)" class="zoom-in">
-                                                <v-img contain height="300" :src="proj.thumb || proj.imgs[0]"
-                                                    :alt="`Image ${projectIndex}`"></v-img>
-                                            </span>
-                                            <v-card-actions>
-                                                <v-spacer></v-spacer>
-                                                <v-btn :color="proj.expanded ? 'info' : ''" icon class="elevation-0"
-                                                    v-ripple="{ class: 'info--text' }"
-                                                    @click="proj.expanded = !proj.expanded">
-                                                    <v-icon>{{ proj.expanded ? 'mdi-chevron-up' :
-                                                        'mdi-chevron-down' }}
-                                                    </v-icon>
-                                                </v-btn>
-                                                <v-spacer></v-spacer>
-                                            </v-card-actions>
-                                            <v-expand-transition>
-                                                <div v-show="proj.expanded || (!isMobile && hover)">
-                                                    <v-divider></v-divider>
-                                                    <v-card-text class="grey--text">
-                                                        <p class="ma-0">{{proj.description}}</p>
-                                                        <p class="mx-2 mb-0 mt-1 caption text-right">{{proj.date}}</p>
-                                                    </v-card-text>
-                                                </div>
-                                            </v-expand-transition>
-                                        </v-card>
-                                    </v-badge>
-                                </v-hover>
+                                <v-divider horizontal class="primary my-4"></v-divider>
                             </div>
                         </div>
+                    </v-lazy>
 
-                        <v-dialog persistent fullscreen v-model="isArtDialogActive">
-                            <div class="artDialogBackground"></div>
-                            <div flat class="ma-0 pa-0 artDialog">
-                                <div v-if="currentArtProject !== undefined && currentArtProject.imgs.length > 0"
-                                    class="artDetailedContainer no-pointer">
-                                    <v-btn fixed right top icon x-large elevation="0"
-                                        @click.prevent="isArtDialogActive = false">
-                                        <v-icon size=60>mdi-close</v-icon>
-                                    </v-btn>
-                                    <v-btn fixed top left icon text :style="{top: '50%', transform:'translateY(-50%)'}"
-                                        v-show="currentArtIndex > 0" :disabled="currentArtIndex <= 0"
-                                        @click.prevent="decrementArtIndex">
-                                        <v-badge bottom offset-x="20" offset-y="-20" :value="currentArtIndex > 0"
-                                            :content="currentArtIndex">
-                                            <v-icon size="80">mdi-chevron-left</v-icon>
-                                        </v-badge>
-                                    </v-btn>
-                                    <v-btn fixed top right icon text :style="{top: '50%', transform:'translateY(-50%)'}"
-                                        v-show="currentArtIndex < currentArtProject.imgs.length-1"
-                                        :disabled="currentArtIndex >= currentArtProject.imgs.length-1"
-                                        @click.prevent="incrementArtIndex">
-                                        <v-badge bottom offset-x="25" offset-y="-20" class="mr-4"
-                                            :value="currentArtIndex < currentArtProject.imgs.length-1"
-                                            :content="currentArtProject.imgs.length - 1 - currentArtIndex">
-                                            <v-icon size="80">mdi-chevron-right</v-icon>
-                                        </v-badge>
-                                    </v-btn>
-                                </div>
-                                <div v-if="currentArtProject !== undefined && currentArtProject.imgs.length > 0"
-                                    class="artCardFit">
-                                    <img v-show="imgIndex === currentArtIndex"
-                                        v-for="(img, imgIndex) in currentArtProject.imgs" :key="img" :src="img"
-                                        class="disable-text-selection artCardFit" />
-                                </div>
-                            </div>
-                        </v-dialog>
-                    </div>
 
                     <!-- CONTACT -->
-                    <div v-if="tabIndex == 2">
-                        <div class="mt-5"></div>
-                        <div class="d-flex flex-column justify-center align-center">
+                    <v-lazy v-if="tabIndex == 2">
+                        <div>
+                            <div class="mt-5"></div>
+                            <div class="d-flex flex-column justify-center align-center">
 
-                            <h2 class="mt-5">Channels</h2>
-                            <div class="mb-4">
-                                <div class="d-flex flex-row mt-2 justify-left">
-                                    <v-icon class="mr-3">mdi-email</v-icon>
-                                    <span>flafdraws@gmail.com</span>
-                                </div>
-                                <div class="d-flex flex-row mt-2 justify-left">
-                                    <v-icon class="mr-3">mdi-discord</v-icon>
-                                    <span>Melon Soda#5176</span>
-                                </div>
-                                <a class="d-flex flex-row mt-2 justify-left" :style="{'text-decoration': 'none'}"
-                                    href="https://www.instagram.com/flafdraws/" target="_blank">
-                                    <v-icon class="mr-3">mdi-instagram</v-icon>
-                                    <span :style="{ color: 'white'}">Instagram DM</span>
-                                </a>
-                            </div>
-
-                            <h2 class="mt-5">Available for hire</h2>
-                            <div class="d-flex flex-row mt-2 mb-4 justify-left">
-                                <v-chip class="mr-2" color=primary>Contract</v-chip>
-                                <v-chip class="mr-2" color=primary>Freelance</v-chip>
-                                <v-chip class="mr-2" color=primary>Full Time</v-chip>
-                            </div>
-
-                            <h2 class="mt-5">Software experience</h2>
-                            <div class="d-flex flex-wrap mt-2 mb-4 justify-center">
-                                <v-btn v-for="software in contact.software" :key="software.name" :href="software.link"
-                                    target="_blank" class="capitalize mx-1 mb-4" rounded>
-                                    <v-avatar tile size=25>
-                                        <img :src="software.icon">
-                                    </v-avatar>
-                                    <span class="ml-1" :style="{color: 'white'}">{{software.name}}</span>
+                                <h2 class="mt-5">Channels</h2>
+                                <div class="mb-4">
+                                    <div class="d-flex flex-row mt-2 justify-left">
+                                        <v-icon class="mr-3">mdi-email</v-icon>
+                                        <span>flafdraws@gmail.com</span>
+                                    </div>
+                                    <div class="d-flex flex-row mt-2 justify-left">
+                                        <v-icon class="mr-3">mdi-discord</v-icon>
+                                        <span>flafdraws#5176</span>
+                                    </div>
+                                    <a class="d-flex flex-row mt-2 justify-left" :style="{'text-decoration': 'none'}"
+                                        href="https://www.instagram.com/flafdraws/" target="_blank">
+                                        <v-icon class="mr-3">mdi-instagram</v-icon>
+                                        <span :style="{ color: 'white'}">Instagram DM</span>
                                     </a>
+                                </div>
+
+                                <h2 class="mt-5">Available for hire</h2>
+                                <div class="d-flex flex-row mt-2 mb-4 justify-left">
+                                    <v-chip class="mr-2" color=primary>Contract</v-chip>
+                                    <v-chip class="mr-2" color=primary>Freelance</v-chip>
+                                    <v-chip class="mr-2" color=primary>Full Time</v-chip>
+                                </div>
+
+                                <h2 class="mt-5">Software experience</h2>
+                                <div class="d-flex flex-wrap mt-2 mb-4 justify-center">
+                                    <v-btn v-for="software in contact.software" :key="software.name"
+                                        :href="software.link" target="_blank" class="capitalize mx-1 mb-4" rounded>
+                                        <v-avatar tile size=25>
+                                            <img :src="software.icon">
+                                        </v-avatar>
+                                        <span class="ml-1" :style="{color: 'white'}">{{software.name}}</span>
+                                        </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </v-lazy>
 
                     <br class="my-5"></br>
                 </div>

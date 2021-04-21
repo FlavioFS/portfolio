@@ -3,12 +3,12 @@
 //////////////////////////////////////////////////
 const tabs = [
     {
-        text: "Dev",
-        icon: "mdi-code-braces"
-    },
-    {
         text: "Art",
         icon: "mdi-brush"
+    },
+    {
+        text: "Dev",
+        icon: "mdi-code-braces"
     },
     {
         text: "Contact",
@@ -141,9 +141,9 @@ const artProjects = [
         description: "Original character concept I've submitted to DeviantArt's Artist Avatar Challenge.",
         expanded: false,
         date: '2021/02/28',
-        thumb: 'https://i.postimg.cc/T3vxjSfL/enpitsu-insta8.png',
+        thumb: 'https://cdna.artstation.com/p/assets/images/images/036/932/404/large/flavio-freitas-enpitsu-insta8.jpg?1619017886',
         imgs: [
-            'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/23a9f1a3-e872-448d-8b4d-9413eaef12c7/def6uq9-5bd670b7-8853-4c29-84ff-b2bad66b7b3a.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMjNhOWYxYTMtZTg3Mi00NDhkLThiNGQtOTQxM2VhZWYxMmM3XC9kZWY2dXE5LTViZDY3MGI3LTg4NTMtNGMyOS04NGZmLWIyYmFkNjZiN2IzYS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.x25uj2JNtpOp_rwSJ71XZSHkYVbCWX5ozC-t1QOcu4k'
+            'https://cdnb.artstation.com/p/assets/images/images/035/424/627/large/flavio-freitas-flaf-enpitsu2-fhd.jpg?1614910695'
         ],
     },
     {
