@@ -85,7 +85,7 @@
                             <div class="mt-4"></div>
                             <v-alert type='info' color="info darken-1" class="xs-1">
                                 <div class="d-flex flex-wrap align-left justify-center">
-                                    <span class="mr-1">This portfolio is under construction.</span>
+                                    <span class="mr-1">This art section is under construction.</span>
                                     <span>New pieces will be uploaded soon. </span>
                                 </div>
                             </v-alert>
@@ -103,29 +103,25 @@
                                                 <span v-on:click.prevent="onArtProjectClick(projectIndex)"
                                                     class="zoom-in">
                                                     <v-img contain height="300" :src="proj.thumb || proj.imgs[0]"
-                                                        :alt="`Image ${projectIndex}`"></v-img>
+                                                        :alt="`Image ${projectIndex}`">
+                                                        <div v-if="hover || proj.expanded"
+                                                            :class="`d-flex flex-column justify-end align-start px-3 artCardDescription ${hover || proj.expanded ? 'artHover' : ''}`">
+                                                            <span class="white--text body-2">
+                                                                {{proj.description}}</span>
+                                                            <span class="grey--text align-self-end caption mt-1">
+                                                                {{proj.date}}
+                                                            </span>
+                                                        </div>
+                                                    </v-img>
                                                 </span>
-                                                <v-card-actions>
+                                                <v-card-actions @click="proj.expanded = !proj.expanded"
+                                                    v-ripple="{ class: 'info--text' }">
                                                     <v-spacer></v-spacer>
-                                                    <v-btn :color="proj.expanded ? 'info' : ''" icon class="elevation-0"
-                                                        v-ripple="{ class: 'info--text' }"
-                                                        @click="proj.expanded = !proj.expanded">
-                                                        <v-icon>{{ proj.expanded ? 'mdi-chevron-up' :
-                                                            'mdi-chevron-down' }}
-                                                        </v-icon>
-                                                    </v-btn>
+                                                    <v-icon :color="proj.expanded ? 'info' : 'grey darken-2'">
+                                                        mdi-information
+                                                    </v-icon>
                                                     <v-spacer></v-spacer>
                                                 </v-card-actions>
-                                                <v-expand-transition>
-                                                    <div v-show="proj.expanded || (!isMobile && hover)">
-                                                        <v-divider></v-divider>
-                                                        <v-card-text class="grey--text">
-                                                            <p class="ma-0">{{proj.description}}</p>
-                                                            <p class="mx-2 mb-0 mt-1 caption text-right">{{proj.date}}
-                                                            </p>
-                                                        </v-card-text>
-                                                    </div>
-                                                </v-expand-transition>
                                             </v-card>
                                         </v-badge>
                                     </v-hover>
@@ -241,20 +237,18 @@
                             <div class="d-flex flex-column justify-center align-center">
 
                                 <h2 class="mt-5">Channels</h2>
-                                <div class="mb-4">
-                                    <div class="d-flex flex-row mt-2 justify-left">
-                                        <v-icon class="mr-3">mdi-email</v-icon>
-                                        <span>flafdraws@gmail.com</span>
+                                <div class="justify-center align-self-center">
+                                    <div class="justify-left" v-for="(channel, index) in contact.channels" :key="index">
+                                        <a v-if="channel.link !== undefined" class="d-flex flex-row mt-2 justify-left"
+                                            :style="{'text-decoration': 'none'}" :href="channel.link" target="_blank">
+                                            <v-icon class="mr-3">{{channel.icon}}</v-icon>
+                                            <span :style="{ color: 'white'}">{{channel.value}}</span>
+                                        </a>
+                                        <div v-else class="d-flex flex-row mt-2 justify-left">
+                                            <v-icon class="mr-3">{{channel.icon}}</v-icon>
+                                            <span>{{channel.value}}</span>
+                                        </div>
                                     </div>
-                                    <div class="d-flex flex-row mt-2 justify-left">
-                                        <v-icon class="mr-3">mdi-discord</v-icon>
-                                        <span>flafdraws#5176</span>
-                                    </div>
-                                    <a class="d-flex flex-row mt-2 justify-left" :style="{'text-decoration': 'none'}"
-                                        href="https://www.instagram.com/flafdraws/" target="_blank">
-                                        <v-icon class="mr-3">mdi-instagram</v-icon>
-                                        <span :style="{ color: 'white'}">Instagram DM</span>
-                                    </a>
                                 </div>
 
                                 <h2 class="mt-5">Available for hire</h2>
@@ -310,6 +304,7 @@
     </div>
 </body>
 
+<script src="data.js"></script>
 <script src="app.js"></script>
 
 </html>
