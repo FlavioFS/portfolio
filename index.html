@@ -191,6 +191,20 @@
                                         </v-btn>
                                     </a>
 
+                                    <div v-if="dev.language !== undefined" class="mx-1">
+                                        <a :href="dev.language.website" target="_blank"
+                                            :style="{'text-decoration': 'none'}" class="mx-1">
+                                            <v-btn rounded class="capitalize">
+                                                <v-avatar size=27 tile>
+                                                    <svg>
+                                                        <image :xlink:href="dev.language.icon" width="27" height="27" />
+                                                    </svg>
+                                                </v-avatar>
+                                                <span class="ml-2">{{dev.language.name}}</span>
+                                            </v-btn>
+                                        </a>
+                                    </div>
+
                                     <div v-if="dev.repo !== undefined" class="mx-1">
                                         <a :href="dev.repo" target="_blank" :style="{'text-decoration': 'none'}">
                                             <v-btn rounded class="capitalize">

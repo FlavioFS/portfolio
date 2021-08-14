@@ -3,6 +3,25 @@
 //////////////////////////////////////////////////
 const devProjects = [
     {
+        title: 'Parsec Soda - Open Source Game Streaming App',
+        engine: {
+            name: 'VS2019',
+            icon: 'img/vs2019.png',
+            website: 'https://visualstudio.microsoft.com/'
+        },
+        language: {
+            name: 'C++',
+            icon: 'img/cpp.png',
+            website: 'https://isocpp.org/'
+        },
+        repo: 'https://github.com/FlavioFS/ParsecSoda',
+        imgs: [
+            'https://i.ytimg.com/vi/u929KNLovj0/maxresdefault.jpg',
+            'https://i.postimg.cc/jShk85BQ/plug.gif',
+            'https://i.postimg.cc/gjPf36qZ/audio.gif'
+        ]
+    },
+    {
         title: 'Battle transition shaders (old Pokémon style)',
         engine: {
             name: 'Godot',
@@ -218,7 +237,17 @@ const contact = {
             name: "Pyxel Edit",
             icon: "img/pyxeledit.png",
             link: "https://www.pyxeledit.com/"
-        }
+        },
+        {
+            name: "VS2019",
+            icon: "img/vs2019.png",
+            link: "https://visualstudio.microsoft.com/"
+        },
+        {
+            name: "C++",
+            icon: "img/cpp.png",
+            link: "https://isocpp.org/"
+        },
     ]
 };
 
