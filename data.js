@@ -137,11 +137,22 @@ const devProjects = [
 //////////////////////////////////////////////////
 const artProjects = [
     {
+        title: 'Lumiel - Portrait (OC Redesigned)',
+        description: "Redesigned my OC and created this portrait to be my official profile picture. This celebrates the end of my 1-year art hiatus.",
+        expanded: false,
+        date: '2021/10/23',
+        thumb: 'https://cdna.artstation.com/p/assets/images/images/042/644/882/smaller_square/flavio-freitas-lumiel-portrait-1920.jpg?1635087313',
+        imgs: [
+            'https://cdna.artstation.com/p/assets/images/images/042/644/882/large/flavio-freitas-lumiel-portrait-1920.jpg?1635087313',
+            'https://cdna.artstation.com/p/assets/images/images/042/645/232/original/flavio-freitas-lumiel.gif?1635088095'
+        ],
+    },
+    {
         title: 'Enpitsu, the art bender',
         description: "Original character concept I've submitted to DeviantArt's Artist Avatar Challenge.",
         expanded: false,
         date: '2021/02/28',
-        thumb: 'https://cdna.artstation.com/p/assets/images/images/036/932/404/large/flavio-freitas-enpitsu-insta8.jpg?1619017886',
+        thumb: 'https://cdna.artstation.com/p/assets/images/images/036/932/404/smaller_square/flavio-freitas-enpitsu-insta8.jpg?1619017886',
         imgs: [
             'https://cdnb.artstation.com/p/assets/images/images/035/424/627/large/flavio-freitas-flaf-enpitsu2-fhd.jpg?1614910695'
         ],
@@ -151,6 +162,7 @@ const artProjects = [
         description: 'Style and structure research.',
         expanded: false,
         date: '2021/01/09',
+        thumb: 'https://cdna.artstation.com/p/assets/images/images/033/706/738/smaller_square/flavio-freitas-flaf-pink-ribbon.jpg?1610372052',
         imgs: [
             'https://cdna.artstation.com/p/assets/images/images/033/706/738/large/flavio-freitas-flaf-pink-ribbon.jpg?1610372052'
         ]
@@ -160,6 +172,7 @@ const artProjects = [
         description: 'My first look into this original character concept.',
         expanded: false,
         date: '2021/01/07',
+        thumb: 'https://cdnb.artstation.com/p/assets/images/images/033/586/747/smaller_square/flavio-freitas-flaf-lumiel.jpg?1610025593',
         imgs: [
             'https://cdnb.artstation.com/p/assets/images/images/033/586/747/large/flavio-freitas-flaf-lumiel.jpg?1610025593',
             'https://cdnb.artstation.com/p/assets/images/images/033/586/753/large/flavio-freitas-flaf-lumiel2.jpg?1610025613'
