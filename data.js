@@ -137,6 +137,21 @@ const devProjects = [
 //////////////////////////////////////////////////
 const artProjects = [
     {
+        title: 'Sword Girls',
+        description: "This is a series of Lineart and Cloth studies I did live on Twitch.",
+        expanded: false,
+        date: '2022/03/16',
+        thumb: 'https://cdnb.artstation.com/p/assets/covers/images/047/874/639/smaller_square/flavio-freitas-flavio-freitas-sword-girl-sq-6.jpg',
+        imgs: [
+            'https://cdnb.artstation.com/p/assets/images/images/047/874/403/large/flavio-freitas-sword-girl-4.jpg?1648651531', // 4
+            'https://cdnb.artstation.com/p/assets/images/images/047/874/387/large/flavio-freitas-sword-girl-1.jpg?1648651512', // 1
+            'https://cdnb.artstation.com/p/assets/images/images/047/874/369/large/flavio-freitas-sword-girl-6.jpg?1648651494', // 6
+            'https://cdna.artstation.com/p/assets/images/images/047/874/392/large/flavio-freitas-sword-girl-2.jpg?1648651517', // 2
+            'https://cdnb.artstation.com/p/assets/images/images/047/874/393/large/flavio-freitas-sword-girl-3.jpg?1648651524', // 3
+            'https://cdna.artstation.com/p/assets/images/images/047/874/408/large/flavio-freitas-sword-girl-5.jpg?1648651537' // 5
+        ],
+    },
+    {
         title: 'Lumiel - Portrait (OC Redesigned)',
         description: "Redesigned my OC and created this portrait to be my official profile picture. This celebrates the end of my 1-year art hiatus.",
         expanded: false,
@@ -212,14 +227,19 @@ const contact = {
     ],
     software: [
         {
-            name: "Krita",
-            icon: "img/krita.png",
-            link: "https://krita.org/"
+            name: "Clip Studio",
+            icon: "img/csp.png",
+            link: "https://www.clipstudio.net/en/"
         },
         {
             name: "Photoshop",
             icon: "img/photoshop.png",
             link: "https://www.adobe.com/br/products/photoshop.html/"
+        },
+        {
+            name: "Krita",
+            icon: "img/krita.png",
+            link: "https://krita.org/"
         },
         {
             name: "Blender",
