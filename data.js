@@ -149,7 +149,7 @@ const artProjects = [
             'https://cdna.artstation.com/p/assets/images/images/047/874/392/large/flavio-freitas-sword-girl-2.jpg?1648651517', // 2
             'https://cdnb.artstation.com/p/assets/images/images/047/874/393/large/flavio-freitas-sword-girl-3.jpg?1648651524', // 3
             'https://cdna.artstation.com/p/assets/images/images/047/874/408/large/flavio-freitas-sword-girl-5.jpg?1648651537' // 5
-        ],
+        ]
     },
     {
         title: 'Lumiel - Portrait (OC Redesigned)',
@@ -160,7 +160,7 @@ const artProjects = [
         imgs: [
             'https://cdna.artstation.com/p/assets/images/images/042/644/882/large/flavio-freitas-lumiel-portrait-1920.jpg?1635087313',
             'https://cdna.artstation.com/p/assets/images/images/042/645/232/original/flavio-freitas-lumiel.gif?1635088095'
-        ],
+        ]
     },
     {
         title: 'Enpitsu, the art bender',
@@ -170,37 +170,6 @@ const artProjects = [
         thumb: 'https://cdna.artstation.com/p/assets/images/images/036/932/404/smaller_square/flavio-freitas-enpitsu-insta8.jpg?1619017886',
         imgs: [
             'https://cdnb.artstation.com/p/assets/images/images/035/424/627/large/flavio-freitas-flaf-enpitsu2-fhd.jpg?1614910695'
-        ],
-    },
-    {
-        title: 'Pink Ribbon',
-        description: 'Style and structure research.',
-        expanded: false,
-        date: '2021/01/09',
-        thumb: 'https://cdna.artstation.com/p/assets/images/images/033/706/738/smaller_square/flavio-freitas-flaf-pink-ribbon.jpg?1610372052',
-        imgs: [
-            'https://cdna.artstation.com/p/assets/images/images/033/706/738/large/flavio-freitas-flaf-pink-ribbon.jpg?1610372052'
-        ]
-    },
-    {
-        title: 'Lumiel, the light elf',
-        description: 'My first look into this original character concept.',
-        expanded: false,
-        date: '2021/01/07',
-        thumb: 'https://cdnb.artstation.com/p/assets/images/images/033/586/747/smaller_square/flavio-freitas-flaf-lumiel.jpg?1610025593',
-        imgs: [
-            'https://cdnb.artstation.com/p/assets/images/images/033/586/747/large/flavio-freitas-flaf-lumiel.jpg?1610025593',
-            'https://cdnb.artstation.com/p/assets/images/images/033/586/753/large/flavio-freitas-flaf-lumiel2.jpg?1610025613'
-        ]
-    },
-    {
-        title: 'Goblin head sculpt',
-        description: 'A 3D character modelling practice session.',
-        expanded: false,
-        date: '2020/10/02',
-        thumb: 'https://i.postimg.cc/3NT572Yx/0001.png',
-        imgs: [
-            'https://i.postimg.cc/tTcdbmXW/goblin-ps.gif'
         ]
     }
 ];
