@@ -14,7 +14,9 @@ const devProjects = [
             icon: 'img/cpp.png',
             website: 'https://isocpp.org/'
         },
-        repo: 'https://github.com/FlavioFS/ParsecSoda',
+        repos: [
+            { href: 'https://github.com/FlavioFS/ParsecSoda' }
+        ],
         imgs: [
             'https://i.ytimg.com/vi/u929KNLovj0/maxresdefault.jpg',
             'https://i.postimg.cc/jShk85BQ/plug.gif',
@@ -28,7 +30,9 @@ const devProjects = [
             icon: 'img/godot.png',
             website: 'https://godotengine.org/'
         },
-        repo: 'https://github.com/flaviofs/godot-pokemon-transitions',
+        repos: [
+            { href: 'https://github.com/flaviofs/godot-pokemon-transitions' }
+        ],
         imgs: [
             'https://i.postimg.cc/bvzMSHv3/preview1.gif',
             'https://i.postimg.cc/SsRvDSC9/preview2.gif',
@@ -42,7 +46,9 @@ const devProjects = [
             icon: 'img/godot.png',
             website: 'https://godotengine.org/'
         },
-        repo: 'https://github.com/FlavioFS/godot-platformer-state-machine',
+        repos: [
+            { href: 'https://github.com/FlavioFS/godot-platformer-state-machine' }
+        ],
         imgs: [
             'https://i.postimg.cc/pL97fXQn/preview.gif',
             'https://i.postimg.cc/kGsrp1D6/extra.gif'
@@ -55,7 +61,9 @@ const devProjects = [
             icon: 'img/godot.png',
             website: 'https://godotengine.org/'
         },
-        repo: 'https://github.com/FlavioFS/godot-mad-stone',
+        repos: [
+            { href: 'https://github.com/FlavioFS/godot-mad-stone' }
+        ],
         imgs: [
             'https://i.postimg.cc/9Mc7h0J4/preview.gif'
         ]
@@ -67,7 +75,16 @@ const devProjects = [
             icon: 'img/cocos.png',
             website: 'https://www.cocos.com/en/creator'
         },
-        repo: 'https://github.com/FlavioFS/slot-test-client',
+        repos: [
+            {
+                name: "Client Source",
+                href: 'https://github.com/FlavioFS/slot-test-client'
+            },
+            {
+                name: "Server Source",
+                href: 'https://github.com/FlavioFS/slot-test-server'
+            }
+        ],
         imgs: [
             'https://i.postimg.cc/mDpZwm1Z/slot-client.gif',
             'https://i.postimg.cc/cHZzcfPV/slotserverdemo.gif'
@@ -120,7 +137,9 @@ const devProjects = [
             icon: 'img/steam.svg',
             link: 'https://steamcommunity.com/sharedfiles/filedetails/?id=1934822334'
         },
-        repo: 'https://github.com/FlavioFS/5-minute-dungeon-tts-mod',
+        repos: [
+            { href: 'https://github.com/FlavioFS/5-minute-dungeon-tts-mod' }
+        ],
         imgs: [
             'https://i.postimg.cc/DytgN5dZ/tts-setup.gif',
             'https://i.postimg.cc/bvR9sPXD/tts-boss.gif',
@@ -133,68 +152,50 @@ const devProjects = [
 
 
 //////////////////////////////////////////////////
-// Art Projects
-//////////////////////////////////////////////////
-const artProjects = [
-    {
-        title: 'Sword Girls',
-        description: "This is a series of Lineart and Cloth studies I did live on Twitch.",
-        expanded: false,
-        date: '2022/03/16',
-        thumb: 'https://cdnb.artstation.com/p/assets/covers/images/047/874/639/smaller_square/flavio-freitas-flavio-freitas-sword-girl-sq-6.jpg',
-        imgs: [
-            'https://cdnb.artstation.com/p/assets/images/images/047/874/403/large/flavio-freitas-sword-girl-4.jpg?1648651531', // 4
-            'https://cdnb.artstation.com/p/assets/images/images/047/874/387/large/flavio-freitas-sword-girl-1.jpg?1648651512', // 1
-            'https://cdnb.artstation.com/p/assets/images/images/047/874/369/large/flavio-freitas-sword-girl-6.jpg?1648651494', // 6
-            'https://cdna.artstation.com/p/assets/images/images/047/874/392/large/flavio-freitas-sword-girl-2.jpg?1648651517', // 2
-            'https://cdnb.artstation.com/p/assets/images/images/047/874/393/large/flavio-freitas-sword-girl-3.jpg?1648651524', // 3
-            'https://cdna.artstation.com/p/assets/images/images/047/874/408/large/flavio-freitas-sword-girl-5.jpg?1648651537' // 5
-        ]
-    },
-    {
-        title: 'Lumiel - Portrait (OC Redesigned)',
-        description: "Redesigned my OC and created this portrait to be my official profile picture. This celebrates the end of my 1-year art hiatus.",
-        expanded: false,
-        date: '2021/10/23',
-        thumb: 'https://cdna.artstation.com/p/assets/images/images/042/644/882/smaller_square/flavio-freitas-lumiel-portrait-1920.jpg?1635087313',
-        imgs: [
-            'https://cdna.artstation.com/p/assets/images/images/042/644/882/large/flavio-freitas-lumiel-portrait-1920.jpg?1635087313',
-            'https://cdna.artstation.com/p/assets/images/images/042/645/232/original/flavio-freitas-lumiel.gif?1635088095'
-        ]
-    },
-    {
-        title: 'Enpitsu, the art bender',
-        description: "Original character concept I've submitted to DeviantArt's Artist Avatar Challenge.",
-        expanded: false,
-        date: '2021/02/28',
-        thumb: 'https://cdna.artstation.com/p/assets/images/images/036/932/404/smaller_square/flavio-freitas-enpitsu-insta8.jpg?1619017886',
-        imgs: [
-            'https://cdnb.artstation.com/p/assets/images/images/035/424/627/large/flavio-freitas-flaf-enpitsu2-fhd.jpg?1614910695'
-        ]
-    }
-];
-
-
-//////////////////////////////////////////////////
 // Contact
 //////////////////////////////////////////////////
 const contact = {
     channels: [
         {
             icon: 'mdi-email',
-            value: 'flafdraws@gmail.com'
+            value: 'flafcodes@gmail.com'
         },
         {
             icon: 'mdi-discord',
             value: 'flafdraws#5176'
-        },
-        {
-            icon: 'mdi-instagram',
-            value: 'Instagram DM',
-            link: 'https://www.instagram.com/flafdraws/'
         }
     ],
     software: [
+        {
+            name: "Unity",
+            icon: "img/unity.png",
+            link: "https://unity.com/"
+        },
+        {
+            name: "Godot",
+            icon: "img/godot.png",
+            link: "https://godotengine.org/"
+        },
+        {
+            name: "C++",
+            icon: "img/cpp.png",
+            link: "https://isocpp.org/"
+        },
+        {
+            name: "Python",
+            icon: "img/python.png",
+            link: "https://www.python.org/"
+        },
+        {
+            name: "VS",
+            icon: "img/vs2019.png",
+            link: "https://visualstudio.microsoft.com/"
+        },
+        {
+            name: "Blender",
+            icon: "img/blender.png",
+            link: "https://www.blender.org/"
+        },
         {
             name: "Clip Studio",
             icon: "img/csp.png",
@@ -211,21 +212,6 @@ const contact = {
             link: "https://krita.org/"
         },
         {
-            name: "Blender",
-            icon: "img/blender.png",
-            link: "https://www.blender.org/"
-        },
-        {
-            name: "Unity",
-            icon: "img/unity.png",
-            link: "https://unity.com/"
-        },
-        {
-            name: "Godot",
-            icon: "img/godot.png",
-            link: "https://godotengine.org/"
-        },
-        {
             name: "Illustrator",
             icon: "img/illustrator.png",
             link: "https://www.adobe.com/br/products/illustrator.html/"
@@ -239,17 +225,7 @@ const contact = {
             name: "Pyxel Edit",
             icon: "img/pyxeledit.png",
             link: "https://www.pyxeledit.com/"
-        },
-        {
-            name: "VS2019",
-            icon: "img/vs2019.png",
-            link: "https://visualstudio.microsoft.com/"
-        },
-        {
-            name: "C++",
-            icon: "img/cpp.png",
-            link: "https://isocpp.org/"
-        },
+        }
     ]
 };
 
@@ -257,30 +233,36 @@ const contact = {
 //////////////////////////////////////////////////
 // Social
 //////////////////////////////////////////////////
-const social = [
+const socials = [
     {
         name: 'Linktree',
         icon: 'img/linktree.svg',
-        link: 'https://linktr.ee/flafdraws'
+        href: 'https://linktr.ee/flafcodes'
     },
     {
-        name: 'ArtStation',
-        icon: 'img/artstation.svg',
-        link: 'https://www.artstation.com/flafdraws'
-    },
-    {
-        name: 'DeviantArt',
-        icon: 'img/deviantart.svg',
-        link: 'https://www.deviantart.com/flafdraws'
-    },
-    {
-        name: 'Instagram',
-        icon: 'img/instagram.svg',
-        link: 'https://www.instagram.com/flafdraws/'
+        name: 'Youtube',
+        icon: 'img/youtube.svg',
+        href: 'https://www.youtube.com/channel/UCapMpIUiBHFIHJHYFVC0S7g?sub_confirmation=1?sub_confirmation=1'
     },
     {
         name: 'GitHub',
         icon: 'img/github.svg',
-        link: 'https://www.github.com/FlavioFS/'
+        href: 'https://www.github.com/FlavioFS'
+    },
+    {
+        name: 'Discord',
+        icon: 'img/discord.svg',
+        href: 'https://discord.gg/6RjwckWUhk'
     }
+    // {
+    //     name: 'Twitter',
+    //     icon: 'img/twitter.svg',
+    //     href: 'https://www.twitter.com/flafcodes/'
+    // },
+    // {
+    //     name: 'Instagram',
+    //     color: 'pink-5',
+    //     icon: 'img/instagram.svg',
+    //     href: 'https://www.instagram.com/flafcodes/'
+    // },
 ];

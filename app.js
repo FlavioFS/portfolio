@@ -3,10 +3,6 @@
 //////////////////////////////////////////////////
 const tabs = [
     {
-        text: "Art",
-        icon: "mdi-brush"
-    },
-    {
         text: "Dev",
         icon: "mdi-code-braces"
     },
@@ -68,7 +64,7 @@ new Vue({
         }
     },
     mounted() {
-        
+
         // Force GitHub Pages to update by changing the line below.
         const forceUpdate = true; // This variable has no impact in the code.
 
@@ -87,14 +83,14 @@ new Vue({
                     this.incrementArtIndex();
                     break;
 
-                    case 'ArrowLeft':
+                case 'ArrowLeft':
                     this.decrementArtIndex();
                     break;
 
-                    case 'Escape':
+                case 'Escape':
                     this.isArtDialogActive = false;
                     break;
-                
+
                 default:
                     break;
             }
@@ -109,9 +105,8 @@ new Vue({
             currentArtIndex: 0,
             tabs: tabs,
             devProjects: devProjects,
-            artProjects: artProjects,
             contact: contact,
-            social: social
+            socials: socials
         }
     }
 });
